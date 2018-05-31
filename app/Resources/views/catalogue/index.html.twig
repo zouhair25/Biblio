@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            
+    
+    <h3 class="header">La listes des catalogues </h3>
+
+    <table class="highlight responsive-table">
+        <thead>
+            <tr>
+                <th >Nom</th>
+                <th colspan="2" >Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for catalogue in catalogues %}
+            <tr>
+                
+                <td>{{ catalogue.nom }}</td>
+                <td><a href="{{ path('catalogue_edit', { 'id': catalogue.id }) }}" class="btn-floating btn-large red"><i class="material-icons">mode_edit</i></a></td>
+
+                <td><a href="{{path('catalogue_delete',{'id':catalogue.id})}}" class="btn-floating btn-large red"><i class="material-icons">delete</i></a></td>
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+ 
+            <a href="{{ path('catalogue_new') }}" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+       
+        </div>
+    </div>
+</div>
+{% endblock %}

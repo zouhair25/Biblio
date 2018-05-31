@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Equipements list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Isdisponible</th>
+                <th>Nombre</th>
+                <th>Nombre_endommage</th>
+                <th>Nombre_nutilisable</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for equipement in equipements %}
+            <tr>
+                <td><a href="{{ path('saisi_equipe_show', { 'id': equipement.id }) }}">{{ equipement.id }}</a></td>
+                <td>{% if equipement.isDisponible %}Yes{% else %}No{% endif %}</td>
+                <td>{{ equipement.nombre }}</td>
+                <td>{{ equipement.nombreendommage }}</td>
+                <td>{{ equipement.nombrenutilisable }}</td>
+                <td>{% if equipement.created %}{{ equipement.created|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('saisi_equipe_show', { 'id': equipement.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('saisi_equipe_edit', { 'id': equipement.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('saisi_equipe_new') }}">Create a new equipement</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,40 @@
+# app/config/security.yml
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_RESPONSABLE: ROLE_EMPLOYE
+        ROLE_DIRECTEUR: ROLE_RESPONSABLE
+        ROLE_ADMINISTRATEUR: ROLE_DIRECTEUR
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                # csrf_token_generator: security.csrf.token_manager
+                # if you are using Symfony < 2.8, use the following config instead:
+                csrf_token_generator: security.csrf.token_manager
+                always_use_default_target_path: false
+                default_target_path: /profile
+
+            logout:
+                path:   /logout
+                target: /login
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/dash/, role: ROLE_RESPONSABLE }
+        - { path: ^/saisi/[^/]+/list, role: ROLE_EMPLOYE }
+        - { path: ^/saisi/[^/]+/new, role: ROLE_EMPLOYE }
+        - { path: ^/saisi/[^/]+/create, role: ROLE_EMPLOYE }
+        - { path: ^/saisi/, role: ROLE_RESPONSABLE }
+        - { path: ^/admin/, role: ROLE_ADMINISTRATEUR }

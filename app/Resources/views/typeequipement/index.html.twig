@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Typeequipements list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Israyonnage</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typeequipement in typeequipements %}
+            <tr>
+                <td><a href="{{ path('typeequipement_show', { 'id': typeequipement.id }) }}">{{ typeequipement.id }}</a></td>
+                <td>{{ typeequipement.nom }}</td>
+                <td>{% if typeequipement.isRayonnage %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('typeequipement_show', { 'id': typeequipement.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('typeequipement_edit', { 'id': typeequipement.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('typeequipement_new') }}">Create a new typeequipement</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bibliotheque</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bibliotheque.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ bibliotheque.nom }}</td>
+            </tr>
+            <tr>
+                <th>Datecreation</th>
+                <td>{% if bibliotheque.dateCreation %}{{ bibliotheque.dateCreation|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Superficie</th>
+                <td>{{ bibliotheque.superficie }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ bibliotheque.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ bibliotheque.tel }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ bibliotheque.fax }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ bibliotheque.email }}</td>
+            </tr>
+            <tr>
+                <th>Dateinstallationinternet</th>
+                <td>{% if bibliotheque.dateInstallationInternet %}{{ bibliotheque.dateInstallationInternet|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Isformation</th>
+                <td>{% if bibliotheque.isFormation %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pfe_admin_bibliotheque') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('pfe_admin_bibliotheque_edit', { 'id': bibliotheque.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

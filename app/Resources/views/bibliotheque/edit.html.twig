@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row card-panel title top-teal col s11 cols2 crudcard">
+    <h5 class="card-title" style="text-align:left !important">Editer bibliothèque</h5>
+
+    {{ form_start(edit_form) }}
+        <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.nom)}}</div>
+        </div>
+         <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.dateCreation)}}</div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.superficie)}}</div>
+        </div>
+        
+         <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.adresse)}}</div>
+        </div>
+         <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.tel)}}</div>
+        </div>
+         <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.fax)}}</div>
+        </div>
+         <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.email)}}</div>
+        </div>
+         <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.dateInstallationInternet)}}</div>
+        </div>
+         <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.isFormation)}}</div>
+        </div>
+         <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.responsable)}}</div>
+        </div>
+         <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.province)}}</div>
+        </div>
+         <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.catalogue)}}</div>
+        </div>
+       
+        <div class="row">
+            <div class="input-field col s1"><button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></button></div>
+            <div class="input-field col s3"><a href="{{ path('pfe_admin_bibliotheque') }}" class="btn blue-grey"><i class="mdi-action-view-headline right"></i>Retour à la liste</a></div>
+        </div>
+       
+
+            {{ form_end(edit_form) }}
+
+            <div style="text-align: center;">
+            {{ form_start(delete_form) }}
+            
+       
+               <button type="submit" class="btn-floating btn-large waves-effect waves-light red">
+                  <i class="material-icons">delete</i>
+               </button> 
+            
+            {{ form_end(delete_form) }}
+            </div>
+</div>
+        
+{% endblock %}

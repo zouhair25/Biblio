@@ -1,0 +1,38 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}
+    CRUD - {{ parent() }}
+{% endblock %}
+
+{% block body -%}
+<div class="row card-panel wtitle top-grey col s11 cols2 crudcard">
+    <h5 class="card-title">Fondoc list</h5>
+    <table class="records_list bordered hoverable">
+        <thead>
+            <tr>
+                <th>Created</th>
+                <th>Typefondoc</th>
+                <th>Nombre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{% if entity.created %}{{ entity.created|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ entity.typefondoc.nom}} </td>
+                <td>{{ entity.nombre }}</td>
+                <td>
+                    <a href="{{ path('pfe_saisi_fondoc_edit', { 'id': entity.id }) }}" class="btn-flat waves-effect waves-teal">
+                        <i class="mdi-editor-mode-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{{ path('pfe_saisi_fondoc_new') }}" class="btn blue-grey">
+        <i class="mdi-content-add left"></i> Créer nouveau</a>
+</div>
+    {% endblock %}

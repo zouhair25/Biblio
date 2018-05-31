@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>{% block title %}PFE SF3 Project{% endblock %}</title>
+
+    {% block stylesheets %}
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="{{ asset('css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    {% endblock %}
+
+
+    {% block javascripts %}
+        <!--  Scripts-->
+        <script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
+        <script src="{{ asset('js/materialize.js') }}"></script>
+        <script src="{{ asset('js/init.js') }}"></script>
+    {% endblock %}
+
+    {% if (is_granted('ROLE_ADMINISTRATEUR'))
+        and (is_granted('ROLE_RESPONSABLE')
+            and not is_granted('ROLE_DIRECTEUR')) %}
+        {% set color='grey' %}
+    {% endif %}
+</head>
+
+<body class="">
+<div class="navbar-fixed">
+    <nav class="{{ color }} darken-3">
+        <div class="nav-wrapper">
+            <a href="#!" class="left brand-logo">PFE SF</a>
+            {% block menu %}
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <ul class="right hide-on-med-and-down">
+                        <li class="right"><a class="dropdown-button" data-activates='dropdownlogout' href=""><i class="material-icons small right">perm_identity</i>Bienvenue, {{ app.user.username }}</a></li>
+                    </ul>
+                    <ul id='dropdownlogout' class='dropdown-content right'>
+                        <li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="right hide-on-med-and-down">
+                        <li class="right"><a href="{{ path('fos_user_security_login') }}"><i class="material-icons small left">power_settings_new</i> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                    </ul>
+                {% endif %}
+            {% endblock %}
+        </div>
+    </nav>
+</div>
+
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+<ul id="nav-mobile" class="side-nav fixed {{ color }} darken-3">
+    <li class="logo"><a class="brand-logo"><img src="{{ asset('img/mc.jpg') }}"></a></li>
+    <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+            {% if is_granted('ROLE_RESPONSABLE') %}
+            <li class="bold {{ color }} darken-3 "><a class="collapsible-header waves-effect white-text active">PROVINCES</a>
+                <div class="collapsible-body">
+                    {{ render(controller("PFEDashBundle:Bib:menu")) }}
+                </div>
+            </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMINISTRATEUR') %}
+                <li class="bold {{ color }} darken-3 "><a class="collapsible-header waves-effect white-text">GESTION DE L'APP</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li class="indigo"><a class="waves-effect grey lighten-5" href="#">Gérer les Responsables</a></li>
+                        <li class="indigo"><a class="waves-effect grey lighten-5" href="{{path('pfe_saisi_adherent')}}">Gérer les Employés</a></li>
+                        <li class="indigo"><a class="waves-effect grey lighten-5" href="{{path('pfe_tutelle_index')}}">Gérer Tutelles</a></li>
+                        <li class="indigo"><a class="waves-effect grey lighten-5" href="{{path('province_index')}}">Gérer Provinces</a></li>
+                        <li class="indigo"><a class="waves-effect grey lighten-5" href="{{path('catalogue_index')}}">Gérer Catalogue</a></li>
+                        <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_admin_bibliotheque') }}">Gérer Bibliothèques</a></li>
+                        <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_admin_socialmedia') }}">Réseaux Sociaux</a></li>
+                    </ul>
+                </div>
+                </li>
+            {% endif %}
+            <li class="bold {{ color }} darken-3 "><a class="collapsible-header waves-effect white-text">FORMULAIRES DE SAISIS</a>
+            <div class="collapsible-body">
+                <ul>
+                    <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_espace') }}">Espaces</a></li>
+                    <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_equipement') }}">Equipements</a></li>
+                    <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_fondoc') }}">Fond Documentaire</a></li>
+                    <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_pret') }}">Prêts</a></li>
+                    <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_adherent') }}">Adherents</a></li>
+                    <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_animation') }}">Animations</a></li>
+                    <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_remarque') }}">Remarques</a></li>
+                    <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_internet') }}">Internet</a></li>
+                </ul>
+            </div>
+            </li>
+            {% if is_granted('ROLE_RESPONSABLE') %}
+            <li class="bold {{ color }} darken-3 "><a class="collapsible-header waves-effect white-text">ETATS DES MAJ</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_dash_bib_maj') }}">Consulter</a></li>
+                    </ul>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+    </li>
+</ul>
+
+<div class="container">
+
+    <br><br><br>
+    <div class="section">
+        <div class="row">
+            <div class="col s12 offset-s2">
+                <div class="row card-panel nopadmar col s11 cols2" style="margin-bottom: 30px;">
+                    <div class="col s12">
+                        <div class="row">
+                            {% block actions %}
+                                <form action="#" method="post">
+                                    {#<div class="col s1 right">#}
+                                        {#<button type="submit" style="margin: 6px;" class="waves-effect waves-light btn-floating"><i class="material-icons right">send</i></button>#}
+                                    {#</div>#}
+                                    <div class="col s2 right">
+                                        <select name="actionyear" onchange="this.form.submit()">
+                                            <option value="" disabled>annee</option>
+                                            {% for i in 2017..2020 %}
+                                            <option {%  if y is defined and y==i %} selected {% endif %}>{{ i }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col s2 right">
+                                        <select name="actionmonth" onchange="this.form.submit()">
+                                            <option value="" disabled>mois</option>
+                                            {% for j in range(1, 12) %}
+                                                <option value="{{ j }}" {%  if m is defined and m==j %} selected {% endif %}>{{ date('2017-' ~ j ~ '-01') |date('F') }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </form>
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="container">
+
+                    <br><br><br>
+                    <div class="section">
+                        <div class="row">
+                            <div class="col offset-s3 s7">
+                                {% endif %}
+
+                                {% block body %}
+
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="page-footer {{ color }} darken-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col offset-l2 l6 s12">
+                                <h5 class="white-text">Projet de Fin d'Etudes</h5>
+                                <p class="grey-text text-lighten-4">Made by Zouhair FASSIH & Anasse ELRHOUL.</p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-copyright {{ color }} darken-4">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col offset-l2">
+                                    Powered by <a class="green-text text-lighten-3" href="http://materializecss.com">Materialize</a> & Symfony.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+                <script type="text/javascript">
+                    {% for message in app.session.flashbag.get('info') %}
+                    Materialize.toast("<i class='material-icons mdi-alert-error blue-text text-lighten-1'></i> &nbsp;<b>{{ message }}</b>", 4000);
+                    {% endfor %}
+
+                    {% for message in app.session.flashbag.get('add') %}
+                    Materialize.toast("<i class='material-icons mdi-action-check-circle teal-text text-lighten-1'></i> &nbsp;<b>{{ message }}</b>", 4000);
+                    {% endfor %}
+
+                    {% for message in app.session.flashbag.get('update') %}
+                    Materialize.toast("<i class='material-icons mdi-action-cached teal-text text-lighten-1'></i> &nbsp;<b>{{ message }}</b>", 4000);
+                    {% endfor %}
+
+                    {% for message in app.session.flashbag.get('delete') %}
+                    Materialize.toast("<i class='material-icons mdi-action-delete red-text text-lighten-1'></i> &nbsp;<b>{{ message }}</b>", 4000);
+                    {% endfor %}
+                </script>
+
+</body>
+</html>
