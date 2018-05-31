@@ -1,0 +1,331 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+html{
+    font-size: 14px;
+}
+
+th,td{
+    padding: 10px 3px;
+}
+
+ul.side-nav{
+    overflow: hidden;
+}
+
+ul.side-nav:hover{
+    overflow: auto;
+}
+
+.side-nav .collapsible-body li.active, .side-nav.fixed .collapsible-body li.active{
+    background-color: #4CAF50;
+}
+
+.pagination li.active {
+    background-color: #4CAF50;
+}
+
+input[type="text"]:focus:not([readonly]), input[type="password"]:focus:not([readonly]), input[type="email"]:focus:not([readonly]), input[type="url"]:focus:not([readonly]), input[type="time"]:focus:not([readonly]), input[type="date"]:focus:not([readonly]), input[type="datetime-local"]:focus:not([readonly]), input[type="tel"]:focus:not([readonly]), input[type="number"]:focus:not([readonly]), input[type="search"]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid inherit; /*orange;*/
+    box-shadow: 0px 1px 0px 0px; /* orange; */
+}
+
+input[type=text]:focus:not([readonly]) + label, input[type=password]:focus:not([readonly]) + label, input[type=email]:focus:not([readonly]) + label, input[type=url]:focus:not([readonly]) + label, input[type=time]:focus:not([readonly]) + label, input[type=date]:focus:not([readonly]) + label, input[type=datetime-local]:focus:not([readonly]) + label, input[type=tel]:focus:not([readonly]) + label, input[type=number]:focus:not([readonly]) + label, input[type=search]:focus:not([readonly]) + label, textarea.materialize-textarea:focus:not([readonly]) + label {
+    /* color: orange; */
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    /* color: orange;  */
+}
+
+span.badge.new {
+    color: #FFF;
+    background-color: orange;
+}
+
+ul.side-nav.fixed li.logo {
+    text-align: center;
+    margin-top: 50px;
+    background: #ffffff;
+}
+ul.side-nav.fixed li.logo:hover {
+    background-color: #ffffff;
+}
+
+ul.side-nav.fixed {
+    overflow: hidden; }
+ul.side-nav.fixed li {
+    line-height: 44px; }
+ul.side-nav.fixed li:hover, ul.side-nav.fixed li.active {
+    background-color: rgba(0, 0, 0, 0.5); }
+ul.side-nav.fixed li.nohover:hover {
+    background-color: transparent; }
+ul.side-nav.fixed li a {
+    font-size: 14px;
+    line-height: 45px;
+    height: 45px;}
+ul.side-nav.fixed li.no-padding a:hover {
+    padding-left: 30px;}
+ul.side-nav.fixed ul.collapsible-accordion {
+    background-color: #FFF; }
+ul.side-nav.fixed:hover {
+    overflow-y: auto; }
+
+.bold > a {
+    font-weight: bold; }
+
+.side-nav .collapsible-body li a i.material-icons,
+.side-nav.fixed .collapsible-body li a i.material-icons {
+    margin-top: 7px;
+    margin-right: 0px;
+    float: left;
+}
+
+.side-nav .collapsible-body li.active a,
+.side-nav.fixed .collapsible-body li.active a {
+    color: black;
+}
+
+.side-nav p,
+.side-nav input[type=text],
+.side-nav input[type=password],
+.side-nav input[type=email],
+.side-nav input[type=url],
+.side-nav input[type=time],
+.side-nav input[type=date],
+.side-nav input[type=datetime-local],
+.side-nav input[type=tel],
+.side-nav input[type=number],
+.side-nav input[type=search],
+.side-nav textarea.materialize-textarea {
+    margin: 0px;
+}
+
+@media only screen and (min-width: 993px){ .container{
+    width: 80% !important;
+}}
+
+@media only screen and (min-width: 601px){ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 50px !important;
+    line-height: 50px !important;
+}}
+
+.container {
+    margin: 0 0 0 6%;
+    padding-top: 10px;
+}
+
+#nav-mobile{
+    width: 18%;
+}
+
+nav .brand-logo{
+    position: relative;
+    width: 18%;
+    text-align: center;
+}
+
+.navbar-fixed {
+    position: absolute;
+    z-index: 1000;
+}
+
+.side-nav .collapsible-body li a{
+    margin:0px;
+}
+
+.side-nav .collapsible-header{
+    margin:0px;
+}
+
+.side-nav.fixed a{
+    padding: 0 20px;
+}
+
+li.logo{
+    height: 200px;
+}
+
+.brand-logo img{
+    height: 190px;
+}
+
+i.tiny {
+    font-size: 1rem !important;
+}
+
+.card-title{
+    margin: 0 0 20px;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.card.wtitle {
+    padding: 0;
+}
+
+.card.wtitle h5 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #000;
+}
+
+.top-blue  {border-top: 3px solid #03a9f4}
+.top-red   {border-top: 3px solid #f44336}
+.top-green   {border-top: 3px solid #4caf50}
+.top-yellow  {border-top: 3px solid #ffeb3b}
+.top-black   {border-top: 3px solid #222}
+.top-grey   {border-top: 3px solid #607d8b}
+.top-teal   {border-top: 3px solid #26a69a}
+
+ul.collapsible-accordion>li{
+    border-bottom: 1px solid #555;
+}
+
+.nopadmar nav ul li:hover,
+.nopadmar nav ul li.active {
+    background-color: #607d8b !important;
+}
+
+nav ul li:hover a i, nav ul li.active a i{
+    color: white !important;
+}
+
+nav ul li.activem {
+    /*border-bottom:2px solid #FFFFFF ; !important;*/
+}
+
+.container .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.cols2 {
+    margin-left: 3.5% !important;
+}
+
+.cols4 {
+    margin-left: 2% !important;
+}
+
+.cols3 {
+    margin-left: 4% !important;
+}
+
+.cols6 {
+    margin-left: 3% !important;
+}
+
+.noborder{
+    border-bottom: 0px !important;
+}
+
+.card .card-content p {
+    font-size: 1.2rem;
+    padding-left: 20px;
+}
+
+.card .card-content {
+    padding-top: 0px;
+}
+
+.card p.bigalone{
+    font-size: 25px;
+    text-align: center;
+    font-weight: 500;
+    padding-left: 0px;
+}
+
+.card p.smallalone{
+    font-size: 17px;
+}
+
+.card .card-content.smallbox {
+    padding-top: 0px;
+    height: 50px;
+}
+
+.bigtitle{
+    font-size: 28px !important;
+}
+
+.smalltitle{
+    font-size: 18px;
+    font-style: italic;
+}
+
+.justbg:hover h3.bigtitle{
+    background-color: #607d8b !important;
+    transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+}
+
+span.badge.new:after {
+    content: "" !important;
+}
+
+span.badge{
+    position: initial;
+    font-size: 14px !important;
+}
+
+table.hoverable {
+    box-shadow: none !important;
+}
+
+
+table.hoverable th{
+    background-color: white;
+}
+
+.noshadow{
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0) !important;
+}
+
+div.record_actions,
+div.record_actions form{
+    display: inline-block;
+}
+
+.crudcard{
+    padding: 20px !important;
+}
+
+span.fb{background-image: url("../img/socials/fb.png"); }
+span.tw{background-image: url("../img/socials/tw.png"); }
+span.ig{background-image: url("../img/socials/ig.png"); }
+span.gp{background-image: url("../img/socials/gp.png"); }
+span.sw{background-image: url("../img/socials/sw.png"); }
+
+.fondoc th,
+.fondoc td {
+    padding: 22px 3px; !important;
+}
+
+table.maj tr th,
+table.maj tr td{
+    text-align: center
+}
+
+.nopadmar,
+.nopadmar .row
+{
+    padding:0px;
+    margin: 0px;
+}
+
+.nopadmar .row input {
+    margin: 3px 0 0 0;
+}
+
+nav ul li:hover, nav ul li.active {
+    background-color: rgba(0, 0, 0, 0);
+}
