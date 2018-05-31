@@ -1,0 +1,4 @@
+services:
+#    pfe_user.example:
+#        class: PFE\UserBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

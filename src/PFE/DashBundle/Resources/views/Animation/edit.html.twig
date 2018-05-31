@@ -1,0 +1,40 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}
+    CRUD - {{ parent() }}
+{% endblock %}
+
+{% block body -%}
+    <div class="row card-panel wtitle top-teal col s11 cols2 crudcard">
+        <h5 class="card-title">Animation edit</h5>
+        {{ form_start(edit_form) }}
+        <div class="row">
+            <div class="input-field col s4">
+                {{ form_row(edit_form.typeanimation) }}
+            </div>
+            <div class="input-field col s4">
+                {{ form_row(edit_form.occamenheb) }}
+            </div>
+            <div class="input-field col s4">
+                {{ form_row(edit_form.publicvise) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s4">
+                {{ form_row(edit_form.dateExposition) }}
+            </div>
+            <div class="input-field col s4">
+                {{ form_row(edit_form.dateanimation) }}
+            </div>
+            <div class="input-field col s4">
+                {{ form_row(edit_form.publicTotal) }}
+            </div>
+            {{ form_widget(edit_form) }}
+            <a href="{{ path('pfe_saisi_animation') }}" class="btn blue-grey">
+                <i class="mdi-action-view-headline left"></i> Retour à la liste
+            </a>
+            {{ form_end(edit_form) }}
+            <div class="record_actions">{{ form(delete_form) }}</div>
+        </div>
+    </div>
+{% endblock %}

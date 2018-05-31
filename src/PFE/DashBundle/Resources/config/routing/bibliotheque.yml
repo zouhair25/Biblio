@@ -1,0 +1,24 @@
+pfe_admin_bibliotheque:
+    path:     /
+    defaults: { _controller: "PFEDashBundle:Bibliotheque:index" }
+    methods:  GET
+
+pfe_admin_bibliotheque_show:
+    path:     /{id}/show
+    defaults: { _controller: "PFEDashBundle:Bibliotheque:show" }
+    methods:  GET
+
+pfe_admin_bibliotheque_new:
+    path:     /new
+    defaults: { _controller: "PFEDashBundle:Bibliotheque:new" }
+    methods:  [GET, POST]
+
+pfe_admin_bibliotheque_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PFEDashBundle:Bibliotheque:edit" }
+    methods:  [GET, POST]
+
+pfe_admin_bibliotheque_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PFEDashBundle:Bibliotheque:delete" }
+    methods:  DELETE

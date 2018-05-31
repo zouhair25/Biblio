@@ -1,0 +1,24 @@
+catalogue_index:
+    path:     /
+    defaults: { _controller: "PFEDashBundle:Catalogue:index" }
+    methods:  GET
+
+catalogue_show:
+    path:     /{id}/show
+    defaults: { _controller: "PFEDashBundle:Catalogue:show" }
+    methods:  GET
+
+catalogue_new:
+    path:     /new
+    defaults: { _controller: "PFEDashBundle:Catalogue:new" }
+    methods:  [GET, POST]
+
+catalogue_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PFEDashBundle:Catalogue:edit" }
+    methods:  [GET, POST]
+
+catalogue_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PFEDashBundle:Catalogue:delete" }
+    methods:  DELETE

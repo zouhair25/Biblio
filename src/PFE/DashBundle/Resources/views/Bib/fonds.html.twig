@@ -1,0 +1,55 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}PFEDashBundle:Bib:fonds{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="card wtitle col s5 cols2">
+        <h3 class="card-title bigtitle blue-grey">graph 1</h3>
+        <div class="card-content">
+            <script type="text/javascript">
+                {{ chart(chart1) }}
+            </script>
+            <div id="piechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+        </div>
+    </div>
+    <div class="card wtitle col s6">
+        <h3 class="card-title bigtitle blue-grey">graph 1</h3>
+        <div class="card-content">
+            <table class="records_list bordered hoverable fondoc">
+                <thead>
+                <tr>
+                    <th>Typefondoc</th>
+                    <th>Nombre</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for f in fondocs %}
+                    <tr>
+                        <td>{{ f.typefondoc.nom}} </td>
+                        <td><span class="badge new" style="background-color: {{ colors[loop.index0] }}"> {{ f.nombre }} </span></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <th><span class="badge new grey darken-3 white-text">{{ count }}</span></th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    {#<div class="row">#}
+        {#<div class="card wtitle col s11 cols2">#}
+            {#<h3 class="card-title bigtitle blue-grey">graph line</h3>#}
+            {#<div class="row">#}
+                {#<script type="text/javascript">#}
+                    {#{{ chart(chart3) }}#}
+                {#</script>#}
+                {#<div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+</div>
+{% endblock %}

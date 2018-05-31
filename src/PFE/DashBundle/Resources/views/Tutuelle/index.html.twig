@@ -1,0 +1,34 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}
+    CRUD - {{ parent() }}
+{% endblock %}
+
+{% block body -%}
+<div class="row card-panel wtitle top-grey col s11 cols2 crudcard">
+    <h5 class="card-title">Equipement list</h5>
+    <table class="records_list bordered hoverable">
+        <thead>
+            <tr>
+                <th>Created</th>
+                <th>Isdisponible</th>
+                <th>Nombre</th>
+                <th>Nombre_endommage</th>
+                <th>Nombre_nutilisable</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ path('pfe_saisi_equipement_new') }}" class="btn blue-grey">
+        <i class="mdi-content-add left"></i> Créer nouveau</a>
+</div>
+{% endblock %}

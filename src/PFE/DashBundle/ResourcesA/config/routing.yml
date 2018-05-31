@@ -1,0 +1,51 @@
+pfe_dash_bibliotheque:
+    resource: "@PFEDashBundle/Resources/config/routing/bibliotheque.yml"
+    prefix:   /admin/bibliotheque
+
+pfe_dash_fondoc:
+    resource: "@PFEDashBundle/Resources/config/routing/fondoc.yml"
+    prefix:   /saisi/fondoc
+
+pfe_dash_pret:
+    resource: "@PFEDashBundle/Resources/config/routing/pret.yml"
+    prefix:   /saisi/pret
+
+pfe_dash_adherent:
+    resource: "@PFEDashBundle/Resources/config/routing/adherent.yml"
+    prefix:   /saisi/adherent
+
+pfe_dash_animation:
+    resource: "@PFEDashBundle/Resources/config/routing/animation.yml"
+    prefix:   /saisi/animation
+
+pfe_dash_remarque:
+    resource: "@PFEDashBundle/Resources/config/routing/remarque.yml"
+    prefix:   /saisi/remarque
+
+pfe_dash_equipement:
+    resource: "@PFEDashBundle/Resources/config/routing/equipement.yml"
+    prefix:   /saisi/equipement
+
+pfe_dash_espace:
+    resource: "@PFEDashBundle/Resources/config/routing/espace.yml"
+    prefix:   /saisi/espace
+
+pfe_dash_internet:
+    resource: "@PFEDashBundle/Resources/config/routing/internet.yml"
+    prefix:   /saisi/internet
+
+pfe_dash_socialmedia:
+    resource: "@PFEDashBundle/Resources/config/routing/socialmedia.yml"
+    prefix:   /admin/socialmedia
+
+pfe_dash_dashboard:
+    resource: "@PFEDashBundle/Resources/config/routing/dash.yml"
+    prefix:   /dash
+
+pfe_dash_typeequipement:
+    resource: "@PFEDashBundle/Resources/config/routing/typeequipement.yml"
+    prefix:   /saisi/typeequipement
+
+index_projet:
+    resource: "@PFEDashBundle/Resources/config/routing/dash.yml"
+    prefix:   /dash

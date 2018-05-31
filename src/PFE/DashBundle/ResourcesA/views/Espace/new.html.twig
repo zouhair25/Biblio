@@ -1,0 +1,31 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}
+    CRUD - {{ parent() }}
+{% endblock %}
+
+{% block body -%}
+    <div class="row card-panel wtitle top-teal col s11 cols2 crudcard">
+        <h5 class="card-title">Espace creation</h5>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="input-field col s6">
+                {{ form_row(form.isDisponible) }}
+            </div>
+            <div class="input-field col s6">
+                {{ form_row(form.etat) }}
+            </div>
+            <div class="input-field col s6">
+                {{ form_row(form.nombrePlaceAssises) }}
+            </div>
+            <div class="input-field col s6">
+                {{ form_row(form.typeespace) }}
+            </div>
+            {{ form_widget(form) }}
+            <a href="{{ path('pfe_saisi_espace') }}" class="btn blue-grey">
+                <i class="mdi-action-view-headline left"></i> Retour à la liste
+            </a>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}PFEDashBundle:Bib:prets{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="card wtitle col s5 cols2">
+            <h3 class="card-title bigtitle blue-grey">graph 1</h3>
+            <div class="card-content">
+                <script type="text/javascript">
+                    {{ chart(chart1) }}
+                </script>
+
+                <div id="piechart1" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            </div>
+        </div>
+        <div class="card wtitle col s5 offset-s1">
+            <h3 class="card-title bigtitle blue-grey">graph 2</h3>
+            <div class="card-content">
+                <script type="text/javascript">
+                    {{ chart(chart2) }}
+                </script>
+
+                <div id="piechart2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card wtitle teal lighten-1 col s4 cols2">
+            <h5 class="card-title white-text teal darken-1"><i class="mdi-content-select-all"></i> Tous</h5>
+            <div class="col s12">
+                <div class="card-content">
+                    <p class="white-text bigalone smallalone">{{  countprets ~ ' prêts' }}<br>{{ countdocs|default('0') }} documents preté</p>
+                </div>
+            </div>
+        </div>
+        <div class="card wtitle indigo lighten-1 col s3 cols3">
+            <h5 class="card-title white-text indigo darken-1"><i class="mdi-action-cached"></i> Interne</h5>
+            <div class="card-content">
+                <p class="white-text bigalone smallalone">{{ countprets_interne ~ ' prêts ' }}<br>{{ countdocs_interne|default('0') }} documents preté</p>
+            </div>
+        </div>
+        <div class="card wtitle blue lighten-1 col s3 cols3">
+            <h5 class="card-title white-text blue darken-1"><i class="mdi-action-trending-up"></i> Externe</h5>
+            <div class="card-content">
+                <p class="white-text bigalone smallalone">{{ countprets_externe ~ ' prêts' }}<br>{{ countdocs_externe|default('0') }} documents preté</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card wtitle col s11 cols2">
+            <h3 class="card-title bigtitle blue-grey">sss</h3>
+            <div class="card-content">
+                <table class="bordered hoverable">
+                    <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Nombre</th>
+                        <th>Created</th>
+                        <th>typepret</th>
+                        <th>fondoc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for p in prets %}
+                        <tr>
+                            <td>{{ p.description }}</td>
+                            <td><span class="badge teal new lighten-1">{{ p.nombre }}</span></td>
+                            <td>{% if p.created %}{{ p.created|date('Y-m-d') }}{% endif %}</td><!-- column to remove -->
+                            <td>{% if p.typepret.nom =="Interne" %}
+                                    <span class="badge indigo new lighten-1">Interne</span>
+                                {% else %}
+                                    <span class="badge blue new lighten-1">Externe</span>
+                                {% endif %} </td>
+                            <td>{{ p.fondoc.typefondoc.nom }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

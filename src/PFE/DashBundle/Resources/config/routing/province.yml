@@ -1,0 +1,24 @@
+province_index:
+    path:     /
+    defaults: { _controller: "PFEDashBundle:Province:index" }
+    methods:  GET
+
+province_show:
+    path:     /{id}/show
+    defaults: { _controller: "PFEDashBundle:Province:show" }
+    methods:  GET
+
+province_new:
+    path:     /new
+    defaults: { _controller: "PFEDashBundle:Province:new" }
+    methods:  [GET, POST]
+
+province_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PFEDashBundle:Province:edit" }
+    methods:  [GET, POST]
+
+province_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PFEDashBundle:Province:delete" }
+    methods:  DELETE

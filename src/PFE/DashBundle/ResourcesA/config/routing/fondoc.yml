@@ -1,0 +1,30 @@
+pfe_saisi_fondoc:
+    path:     /list
+    defaults: { _controller: "PFEDashBundle:Fondoc:index" }
+
+pfe_saisi_fondoc_show:
+    path:     /{id}/show
+    defaults: { _controller: "PFEDashBundle:Fondoc:show" }
+
+pfe_saisi_fondoc_new:
+    path:     /new
+    defaults: { _controller: "PFEDashBundle:Fondoc:new" }
+
+pfe_saisi_fondoc_create:
+    path:     /create
+    defaults: { _controller: "PFEDashBundle:Fondoc:create" }
+    methods:  POST
+
+pfe_saisi_fondoc_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PFEDashBundle:Fondoc:edit" }
+
+pfe_saisi_fondoc_update:
+    path:     /{id}/update
+    defaults: { _controller: "PFEDashBundle:Fondoc:update" }
+    methods:  [POST, PUT]
+
+pfe_saisi_fondoc_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PFEDashBundle:Fondoc:delete" }
+    methods:  [POST, DELETE]

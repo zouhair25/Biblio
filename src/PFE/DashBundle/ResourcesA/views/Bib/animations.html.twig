@@ -1,0 +1,72 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}PFEDashBundle:Bib:animations{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="card wtitle col s11 cols2">
+        <ul class="tabs anima">
+            {% for t in types %}
+            <li class="tab col s3 blue-grey {% if loop.index is not divisible by(2) %} lighten-1 {% endif %}"><a class="white-text" href="#{{ t.id }}">{{ t.nom }}</a></li>
+            {% endfor %}
+        </ul>
+        {% for as in animations %}
+            <div id="{{ types[loop.index0].id }}" class="col s12"><br><div class="row">
+                    <table class="records_list bordered hoverable">
+                    <thead>
+                    <tr>
+                        <th style="width: 20%"></th>
+                        <th style="width: 20%">Occamenheb</th>
+                        <th style="width: 20%">Publicvise</th>
+                        <th style="width: 20%">Dateanimation</th>
+                        <th style="width: 20%">Publictotal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for a in as %}
+                        <tr>
+                            <td>{{ a.typeanimation.nom }}</td>
+                            <td>{% if a.occamenheb==1 %} Hebdomadaire {% elseif a.occamenheb==2 %} Mensuel {% elseif a.occamenheb==3 %} Occasionnel {% endif %}</td>
+                            <td><span class="badge new indigo lighten-1">{{ a.publicvise }}</span></td>
+                            <td>{% if a.dateanimation %}{{ a.dateanimation|date('Y-m-d') }}{% endif %}</td>
+                            <td><span class="badge new teal lighten-1">{{ a.publicTotal }}</span></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">NO ANIMATION NIGGA !</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                    <br>
+                    <div class="card wtitle col s10 offset-s1 blue-grey lighten-5">
+                        <div class="card-content smalltitle"><br>
+                            <div class="row">
+                                <div class="col s6">Total {{ types[loop.index0].nom }} :
+                                    <span class="badge new black lighten-1">{{ as|length }}</span>
+                                </div>
+                                <div class="col s6">Total public :
+                                    <span class="badge new indigo lighten-1">{{ countPVs[loop.index0]|default('0') }}</span>
+                                    / <span class="badge new teal lighten-1">{{ countPTs[loop.index0]|default('0') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+        {% endfor %}
+    </div>
+</div>
+<div class="card wtitle col s10 offset-s1">
+    <h3 class="card-title bigtitle blue-grey">quick states</h3>
+    <div class="card-content smalltitle"><br>
+        <div class="row">
+            <div class="col s6">Total Activités : <span class="badge new black lighten-1">{{ countAs }}</span>
+            </div>
+            <div class="col s6">Total public :
+                <span class="badge new indigo lighten-1">{{ sumPVs }}</span>
+                / <span class="badge new teal lighten-1">{{ sumPTs }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

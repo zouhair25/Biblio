@@ -1,0 +1,141 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}PFEDashBundle:Bib:maj{% endblock %}
+
+{% block body %}
+
+    <div class="row card-panel wtitle top-grey col s11 cols2">
+        <h5 class="card-title">Etat des Mise à jours</h5>
+        <div class="col s12">
+            <div class="row">
+
+                <table class="maj bordered hoverable">
+                    <thead>
+                    <tr>
+                        <th style="width: 35%;"></th>
+                        <th>Jan</th>
+                        <th>Fev</th>
+                        <th>Mars</th>
+                        <th>Avr</th>
+                        <th>Mai</th>
+                        <th>Juin</th>
+                        <th>Juil</th>
+                        <th>Aout</th>
+                        <th>Sep</th>
+                        <th>Oct</th>
+                        <th>Nov</th>
+                        <th>Dec</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for bib in bibs %}
+                    <tr>
+                        <td style="text-align: left">{{ bib.nom }}</td>
+                        {% for maj in bib.maj %}
+
+                            {% if maj.etat == 1 %}
+                                <td><a class="btn-floating btn-flat z-depth-0 "><i class="material-icons text-lighten-1 grey-text mdi-image-timelapse "></i></a></td>
+                            {% endif %}
+
+                            {% if maj.etat == 2 %}
+                            <td onclick="sync2(this)"><a class=" btn-floating btn orange lighten-1"><i class="material-icons mdi-file-cloud-upload "></i></a></td>
+                            {% endif %}
+
+                            {% if maj.etat == 3 %}
+                            <td><a class=" btn-floating btn red lighten-1"><i class="material-icons mdi-action-check-circle "></i></a></td>
+                            {% endif %}
+
+                            {% if maj.etat == 4 %}
+                            <td onclick="sync(this)"><a class=" btn-floating btn red lighten-1"><i class="material-icons mdi-alert-error "></i></a></td>
+                            {% endif %}
+
+                            {% if maj.etat == 5 %}
+                            <td><a class=" btn-floating btn teal lighten-1 z-depth-0"><i class="material-icons mdi-toggle-check-box "></i></a></td>
+                            {% endif %}
+
+                            {% if maj.etat == 6 %}
+                            <td><a class=" btn-floating btn lighten-1 blue-grey z-depth-0"><i class="material-icons mdi-toggle-check-box "></i></a></td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+
+
+
+<!-- looooooooooooooooooooooooooooooooooooooooooooooooooooooool -->
+                <script type="text/javascript">
+                    //Materialize.toast("<i class='material-icons mdi-alert-error orange-text text-lighten-1'></i> &nbsp;<b>Avertissement : mise a jour du moi Octobre en retard !!</b>", 10000);
+
+                    function sync(e) {
+                        $(e).html('<a class=" btn-floating btn red lighten-1 rotaa"><i class="material-icons mdi-action-cached "></i></a>')
+                            .delay('3000');
+                        setTimeout(function() {
+                            $(e).html('<a class=" btn-floating btn red lighten-1"><i class="material-icons mdi-action-check-circle "></i></a>');
+                            Materialize.toast("<i class='material-icons mdi-action-check-circle orange-text text-lighten-1'></i> &nbsp;<b>Avertissement envoyé !</b>", 4000);
+                        }, 2000);
+
+                    }
+                    function sync2(e) {
+                        $(e).html('<a class=" btn-floating btn orange lighten-1 rotaa"><i class="material-icons mdi-action-cached "></i></a>')
+                            .delay('3000');
+                        setTimeout(function() {
+                            $(e).html('<a class=" btn-floating green red lighten-1"><i class="material-icons mdi-action-check-circle "></i></a>');
+                            Materialize.toast("<i class='material-icons mdi-action-check-circle teal-text text-lighten-1'></i> &nbsp;<b>Success !</b>", 4000);
+                        }, 2000);
+                    }
+
+                </script>
+
+                <style type="text/css">
+                    .rotaa {
+                        -webkit-animation:spin 2s linear infinite;
+                        -moz-animation:spin 2s linear infinite;
+                        animation:spin 2s linear infinite;
+                    }
+                    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+                    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+                    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+                </style>
+                <!-- looooooooooooooooooooooooooooooooooooooooooooooooooooooool -->
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row card-panel wtitle top-grey col s11 cols2">
+        <h5 class="card-title">Légende du tableau</h5>
+        <div class="col s12">
+            <div class="row">
+                <a class=" btn-floating btn lighten-1 blue-grey z-depth-0"><i class="material-icons mdi-toggle-check-box "></i></a>
+                <span class="badge new blue-grey">A jour</span>
+
+                <a class=" btn-floating btn teal lighten-1 z-depth-0"><i class="material-icons mdi-toggle-check-box "></i></a>
+                <span class="badge new teal">Mis à jour aujourd'hui</span>
+
+                <a class=" btn-floating btn red lighten-1"><i class="material-icons mdi-alert-error "></i></a>
+                <span class="badge new red">Envoyer avertissement</span>
+
+                <a class=" btn-floating btn red lighten-1"><i class="material-icons mdi-action-check-circle "></i></a>
+                <span class="badge new red">Avertissement envoyé</span>
+
+                <a class=" btn-floating btn orange lighten-1"><i class="material-icons mdi-file-cloud-upload "></i></a>
+                <span class="badge new orange">Envoyer la mise à jour</span>
+
+                <a class="btn-floating btn-flat z-depth-0 "><i class="material-icons text-lighten-1 grey-text mdi-image-timelapse "></i></a>
+                <span class="badge new grey">Prochainement</span>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

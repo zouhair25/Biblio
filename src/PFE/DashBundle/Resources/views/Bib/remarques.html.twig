@@ -1,0 +1,65 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}PFEDashBundle:Bib:remarques{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="card wtitle col s5 cols2">
+            <h3 class="card-title bigtitle red">Besoins</h3>
+            <div class="card-content">
+                <table class="records_list bordered hoverable">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for b in besoins %}
+                        <tr>
+                            <td>{{ b.nom }}</td>
+                            <td>{{ b.description[:40] ~ '..'  }}<a onclick="$('#modalb-{{ loop.index }}').openModal();" class="modal-trigger" href="#modalb-{{ loop.index }}"><i class="mdi-action-open-in-new"></i> plus</a></td>
+                        </tr>
+                        <div id="modalb-{{ loop.index }}" class="modal">
+                            <div class="modal-content">
+                                <h4>Besoin N°{{ loop.index }} : {{ b.nom }}</h4>
+                                <br>
+                                <p>{{ b.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card wtitle col s5 offset-s1">
+            <h3 class="card-title bigtitle orange">Remarques</h3>
+            <div class="card-content">
+                <table class="records_list bordered hoverable">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for r in remarques %}
+                        <tr>
+                            <td>{{ r.nom }}</td>
+                            <td>{{ r.description[:35] ~ '..'  }}<a onclick="$('#modalr-{{ loop.index }}').openModal();" class="modal-trigger" href="#modalr-{{ loop.index }}"><i class="mdi-action-open-in-new"></i> plus</a></td>
+                        </tr>
+                        <div id="modalr-{{ loop.index }}" class="modal">
+                            <div class="modal-content">
+                                <h4>Remarque N°{{ loop.index }} : {{ r.nom }}</h4>
+                                <br>
+                                <p>{{ r.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

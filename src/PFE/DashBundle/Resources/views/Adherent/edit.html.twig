@@ -1,0 +1,15 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}
+  CRUD - {{ parent() }}
+{% endblock %}
+
+{% block body -%}
+<div class="row card-panel wtitle top-teal col s11 cols2 crudcard">
+  <h5 class="card-title">Adherent edit</h5>
+		{{ form_start(edit_form) }}
+	    {{form_widget(edit_form)}}
+	    <button type="submit" name="Edit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></button>
+	  {{form_end(edit_form)}}
+</div>
+{% endblock %}
