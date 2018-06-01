@@ -1,19 +1,12 @@
-pfe_tutelle_index:
-    path:     /list
+tutelle_index:
+    path:     /
     defaults: { _controller: "PFEDashBundle:Tutelle:index" }
+    methods:  GET
 
-pfe_tutelle_delete:
-    path:     /{id}/delete
-    defaults: { _controller: "PFEDashBundle:Tutelle:delete" }
-
-pfe_tutelle_create:
-    path:     /create
-    defaults: { _controller: "PFEDashBundle:Tutelle:create" }
-
-pfe_tutelle_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "PFEDashBundle:Tutelle:edit" }
-
-pfe_tutelle_show:
+tutelle_show:
     path:     /{id}/show
     defaults: { _controller: "PFEDashBundle:Tutelle:show" }
+    methods:  GET
+
+
+

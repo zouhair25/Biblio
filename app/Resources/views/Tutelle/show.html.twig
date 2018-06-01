@@ -1,54 +1,28 @@
-{% extends "PFEDashBundle::layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %}
-    CRUD - {{ parent() }}
-{% endblock %}
+{% block body %}
+    <h1>Tutelle</h1>
 
-{% block body -%}
-<div class="row card-panel wtitle top-black col s11 cols2 crudcard">
-    <h5 class="card-title">Equipement</h5>
-
-    <table class="record_properties">
+    <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Isdisponible</th>
-                <td>{% if entity.isDisponible %}
-                        <span class="badge green new">Disponible</span>
-                    {% else %}
-                        <span class="badge red new">Non Disponible</span>
-                    {% endif %} </td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ entity.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Nombre_endommage</th>
-                <td>{{ entity.nombreendommage }}</td>
-            </tr>
-            <tr>
-                <th>Nombre_nutilisable</th>
-                <td>{{ entity.nombrenutilisable }}</td>
+                <td>{{ tutelle.id }}</td>
             </tr>
             <tr>
                 <th>Created</th>
-                <td>{{ entity.created|date('Y-m-d') }}</td>
+                <td>{% if tutelle.created %}{{ tutelle.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ tutelle.nom }}</td>
             </tr>
         </tbody>
     </table>
 
-    <div class="record_actions">
-        <a href="{{ path('pfe_saisi_equipement_edit', { 'id': entity.id }) }}" class="btn">
-            <i class="mdi-editor-mode-edit left"></i> Modifier
-        </a>
-        <a href="{{ path('pfe_saisi_equipement') }}" class="btn blue-grey">
-            <i class="mdi-action-view-headline left"></i> Retour à la liste
-        </a>
-        {{ form(delete_form) }}
-    </div>
-</div>
+    <ul>
+        <li>
+            <a href="{{ path('tutelle_index') }}">Back to the list</a>
+        </li>
+    </ul>
 {% endblock %}

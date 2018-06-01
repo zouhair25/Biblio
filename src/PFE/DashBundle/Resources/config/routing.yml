@@ -60,3 +60,4 @@ index_projet:
 pfe_dash_tutelle:
     resource: "@PFEDashBundle/Resources/config/routing/tutelle.yml"
     prefix:   /tutelle
+

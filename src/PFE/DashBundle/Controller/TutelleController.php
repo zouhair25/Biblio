@@ -2,49 +2,40 @@
 
 namespace PFE\DashBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PFE\DashBundle\Entity\Tutelle;
-class TutelleController extends Controller{
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-	/*
-	* liste des entities tutulle
-	*/
-	public function indexAction(Request $request){
 
-		$em =$this->getDoctrine()->getManager();
-		/*$req=$request->request;
-		$y=$req->get('actionyear');
-		$m=$req->get('actionmonth');*/
+/**
+ * Tutelle controller.
+ *
+ */
+class TutelleController extends Controller
+{
+    /**
+     * Lists all tutelle entities.
+     *
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
 
-		$entities=$em->getRepository('PFEDashBundle:Tutelle')->findAll();
-         
-		return $this->render('Tutelle/index.html.twig'
-		      ,array(
-		/*	'current'=>'tutuelle',
-			'y'=>$y, 'm'=>$m*/
-		    'entities'=>$entities,
-		    ));
-	
-	}
+        $tutelles = $em->getRepository('PFEDashBundle:Tutelle')->findAll();
 
-	public function addAction(){
+        return $this->render('tutelle/index.html.twig', array(
+            'tutelles' => $tutelles,
+        ));
+    }
 
-	}
-	public function deleteAction(){
-     
-	}
-	public function createAction(){
+    /**
+     * Finds and displays a tutelle entity.
+     *
+     */
+    public function showAction(Tutelle $tutelle)
+    {
 
-	}
-	public function showAction(Tutulle $tutulle){
-     
-	}
-	public function createDeleteForm(Tutulle $tutulle){
-     
-     return $this->createFormBuilder()
-            ->setAction($this->generateUrl('pfe_tutelle_delete',array($tutulle->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
-	}
+        return $this->render('tutelle/show.html.twig', array(
+            'tutelle' => $tutelle,
+        ));
+    }
 }

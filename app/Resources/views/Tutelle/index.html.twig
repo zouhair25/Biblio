@@ -1,32 +1,34 @@
-{% extends "PFEDashBundle::layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %}
-    CRUD - {{ parent() }}
-{% endblock %}
+{% block body %}
+    <h1>Tutelles list</h1>
 
-{% block body -%}
-<div class="row card-panel wtitle top-grey col s11 cols2 crudcard">
-    <h5 class="card-title">Liste Tutelles </h5>
-    <table class="records_list bordered hoverable">
+    <table>
         <thead>
             <tr>
-                
+                <th>Id</th>
+                <th>Created</th>
                 <th>Nom</th>
-                <th>Date création </th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-      {% for entity in entities %}
+        {% for tutelle in tutelles %}
             <tr>
-                <td>{{entity.nom}}</td>
-                <td>{{entity.created|date('d-m-Y')}}</td>
+                <td><a href="{{ path('tutelle_show', { 'id': tutelle.id }) }}">{{ tutelle.id }}</a></td>
+                <td>{% if tutelle.created %}{{ tutelle.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ tutelle.nom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tutelle_show', { 'id': tutelle.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
-    <br>
-    <a href="" class="btn blue-grey">
-        <i class="mdi-content-add left"></i> Créer nouveau</a>
-</div>
+
+    
 {% endblock %}
