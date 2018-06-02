@@ -121,4 +121,16 @@ class BibliothequeController extends Controller
             ->getForm()
         ;
     }
+
+
+      public function testAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $bibliotheques = $em->getRepository('PFEDashBundle:Bibliotheque')->findAll();
+
+        return $this->render('bibliotheque/test.html.twig', array(
+            'bibliotheques' => $bibliotheques,
+        ));
+    }
 }

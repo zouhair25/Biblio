@@ -22,3 +22,8 @@ pfe_admin_bibliotheque_delete:
     path:     /{id}/delete
     defaults: { _controller: "PFEDashBundle:Bibliotheque:delete" }
     methods:  DELETE
+
+pfe_admin_bibliotheque_test:
+    path:     /test
+    defaults: { _controller: "PFEDashBundle:Bibliotheque:test" }
+    methods:  GET

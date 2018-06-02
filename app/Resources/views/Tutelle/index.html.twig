@@ -1,34 +1,35 @@
-{% extends 'base.html.twig' %}
+{% extends "PFEDashBundle::layout.html.twig" %}
 
-{% block body %}
-    <h1>Tutelles list</h1>
+{% block title %}
+    CRUD - {{ parent() }}
+{% endblock %}
 
-    <table>
+{% block body -%}
+<div class="row card-panel wtitle top-grey col s11 cols2 crudcard">
+    <h5 class="card-title">Liste Tutelles </h5>
+    <table class="records_list bordered hoverable">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Created</th>
+                
                 <th>Nom</th>
+                <th>Date création </th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for tutelle in tutelles %}
+      {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('tutelle_show', { 'id': tutelle.id }) }}">{{ tutelle.id }}</a></td>
-                <td>{% if tutelle.created %}{{ tutelle.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ tutelle.nom }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('tutelle_show', { 'id': tutelle.id }) }}">show</a>
-                        </li>
-                    </ul>
-                </td>
+                <td>{{entity.nom}}</td>
+                <td>{{entity.created|date('d-m-Y')}}</td>
+                <td><a href="{{path('pfe_tutelle_edit',{'id':entity.id}) }}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a></td>
+                <td> <a href="{{path('pfe_tutelle_remove',{'id':entity.id})}}" class="btn-floating btn-large red"><i class="material-icons">delete</i></a></td>
+
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
-
-    
+    <br>
+    <a href="{{path('pfe_tutelle_new')}}" class="btn blue-grey">
+        <i class="mdi-content-add left"></i> Créer nouveau</a>
+</div>
 {% endblock %}

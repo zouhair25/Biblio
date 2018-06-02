@@ -1,0 +1,24 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}
+    CRUD - {{ parent() }}
+{% endblock %}
+
+{% block body -%}
+    <div class="row card-panel wtitle top-teal col s11 cols2 crudcard">
+        <h5 class="card-title">Equipement edit</h5>
+        {{ form_start(edit_form) }}
+        <div class="row">
+            <div class="input-field col s4">
+                {{ form_row(edit_form.created) }}
+            </div>
+            <div class="input-field col s4">
+                {{ form_row(edit_form.nom) }}
+            </div>
+            <div class="input-field col s4">
+                {{ form_row(edit_form.bibliotheque) }}
+            </div>
+        </div>
+     
+    </div>
+{% endblock %}

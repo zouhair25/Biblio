@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tutelles list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Created</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tutelle in tutelles %}
+            <tr>
+                <td><a href="{{ path('tutelle_show', { 'id': tutelle.id }) }}">{{ tutelle.id }}</a></td>
+                <td>{% if tutelle.created %}{{ tutelle.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ tutelle.nom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tutelle_show', { 'id': tutelle.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

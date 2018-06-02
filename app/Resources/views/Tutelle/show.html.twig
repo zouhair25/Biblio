@@ -1,28 +1,31 @@
-{% extends 'base.html.twig' %}
+{% extends "PFEDashBundle::layout.html.twig" %}
 
-{% block body %}
-    <h1>Tutelle</h1>
+{% block title %}
+    CRUD - {{ parent() }}
+{% endblock %}
 
-    <table>
+{% block body -%}
+<div class="row card-panel wtitle top-black col s11 cols2 crudcard">
+    <h5 class="card-title">Tutelle</h5>
+
+    <table class="record_properties">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ tutelle.id }}</td>
+                <td></td>
             </tr>
-            <tr>
-                <th>Created</th>
-                <td>{% if tutelle.created %}{{ tutelle.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ tutelle.nom }}</td>
-            </tr>
+         
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('tutelle_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div class="record_actions">
+        <a href="" class="btn">
+            <i class="mdi-editor-mode-edit left"></i> Modifier
+        </a>
+        <a href="{{path('pfe_tutelle_index')}}" class="btn blue-grey">
+            <i class="mdi-action-view-headline left"></i> Retour à la liste
+        </a>
+     
+    </div>
+</div>
 {% endblock %}

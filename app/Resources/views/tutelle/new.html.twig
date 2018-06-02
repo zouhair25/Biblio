@@ -1,0 +1,35 @@
+{% extends "PFEDashBundle::layout.html.twig" %}
+
+{% block title %}
+    CRUD - {{ parent() }}
+{% endblock %}
+
+{% block body -%}
+    <div class="row card-panel wtitle top-teal col s11 cols2 crudcard">
+        <h5 class="card-title">Création tutelle</h5>
+        {{ form_start(form) }}
+        <div class="row">
+            
+            <div class="input-field col s4">
+                {{ form_row(form.nom) }}
+            </div>
+            <div class="input-field col s4">
+              
+            </div>
+        </div>
+        <div class="row">
+               <div class="input-field col s2">  <button type="submit" value="Create" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></button></div>
+        </div>
+      {{ form_end(form) }}
+    </div>
+       <script>
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 150, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+    </script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tutelle</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tutelle.id }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{% if tutelle.created %}{{ tutelle.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ tutelle.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tutelle_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
