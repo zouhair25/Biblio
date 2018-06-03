@@ -61,17 +61,31 @@ class TutelleController extends Controller{
      }
     return $this->redirectToRoute('pfe_tutelle_index');
 	}
-	public function editAction(){
+	public function editAction(Request $request,Tutelle $tutelle){
 
+    $deleteForm=$this->createDeleteForm($tutelle);
+    $editForm=$this->createForm('PFE\DashBundle\Form\TutelleType',$tutelle);
+    $editForm->handleRequest($request);
+    if($editForm->isValid() && $editForm->isSubmitted()){
+    	$this->getDoctrine()->getManager()->flush();
+       
+       return $this->redirectToRoute('pfe_tutelle_edit',array('id'=>$tutelle->getId()));
+    }
+    return $this->render('tutelle/edit.html.twig',array(
+    	'deleteForm'=>$deleteForm->createView(),
+        'editForm'=>$editForm->createView(),
+        'tutelle'=>$tutelle));
 	}
+
 	public function showAction(Tutelle $entity){
      
      return $this->render('tutelle/show.html.twig', array('entity'=>$entity->getId()));
 	}
-	public function createDeleteForm(Tutelle $tutelle){
+
+	private function createDeleteForm(Tutelle $tutelle){
      
      return $this->createFormBuilder()
-            ->setAction($this->generateUrl('pfe_tutelle_delete',array($tutelle->getId())))
+            ->setAction($this->generateUrl('pfe_tutelle_delete',array('id'=>$tutelle->getId())))
             ->setMethod('DELETE')
             ->getForm();
 	}

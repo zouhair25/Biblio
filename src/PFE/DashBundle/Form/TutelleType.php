@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
+use PFE\DashBundle\Entity\Bibliotheque;
 class TutelleType extends AbstractType
 {
     /**
@@ -23,10 +23,10 @@ class TutelleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nom')
-        ->add('bibliotheque',EntityType::class,array(
-            'class'=>'PFEDashBundle:Tutelle',
+        /*->add('bibliotheque',EntityType::class,array(
+            'class'=>'PFEDashBundle:Bibliotheque',
             'choice_label'=>'nom',
-            'multiple'=>false))
+            'multiple'=>false))*/
         ;
     }/**
      * {@inheritdoc}

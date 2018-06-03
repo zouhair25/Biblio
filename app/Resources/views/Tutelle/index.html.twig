@@ -22,7 +22,7 @@
                 <td>{{entity.nom}}</td>
                 <td>{{entity.created|date('d-m-Y')}}</td>
                 <td><a href="{{path('pfe_tutelle_edit',{'id':entity.id}) }}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a></td>
-                <td> <a href="{{path('pfe_tutelle_remove',{'id':entity.id})}}" class="btn-floating btn-large red"><i class="material-icons">delete</i></a></td>
+                <td> <a href="{{path('pfe_tutelle_remove',{'id':entity.id})}}" class="btn-floating btn-large red"><i class="material-icons" onclick="return confirm('Voulez vous vraiment supprimer')">delete</i></a></td>
 
             </tr>
             {% endfor %}
