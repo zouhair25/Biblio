@@ -56,7 +56,9 @@ class BibliothequeType extends AbstractType
                     'choice_label'=>'nom',
                     'multiple'=>false))*/
                 ;
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

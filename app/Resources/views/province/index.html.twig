@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container">
+<div class="row card-panel title top-grey col s11 cols2 crudcard"> 
     <div class="row">
         <div class="col s12">
             
       
-    <h3 class="header">Liste des provinces</h3>
+    <h5 class="card-title" style="text-align:left !important">Liste des provinces</h5>
 
     <table class="">
         <thead>
@@ -23,7 +23,7 @@
                        
                 <td>  <a href="{{ path('province_edit', { 'id': province.id }) }}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a></td>
 
-                <td><a href="{{ path('province_show', { 'id': province.id }) }}" class="waves-light waves-effect btn-large btn-floating red"><i class="material-icons">delete</i></a></td>    
+                <td><a href="{{ path('province_remove', { 'id': province.id }) }}" class="waves-light waves-effect btn-large btn-floating red" onclick="return confirm('Voulez vous vraiement supprimer ?')"><i class="material-icons">delete</i></a></td>    
                 
             </tr>
         {% endfor %}

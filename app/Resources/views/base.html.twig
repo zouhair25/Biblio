@@ -91,6 +91,8 @@
                     <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_animation') }}">Animations</a></li>
                     <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_remarque') }}">Remarques</a></li>
                     <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('pfe_saisi_internet') }}">Internet</a></li>
+                    <li class="indigo"><a class="waves-effect grey lighten-5" href="{{ path('typeespace_index') }}">Type espace</a></li>
+
                 </ul>
             </div>
             </li>
@@ -190,7 +192,7 @@
                     Materialize.toast("<i class='material-icons mdi-action-check-circle teal-text text-lighten-1'></i> &nbsp;<b>{{ message }}</b>", 4000);
                     {% endfor %}
 
-                    {% for message in app.session.flashbag.get('update') %}
+                    {% for message in app.session.flashbag.get('edit') %}
                     Materialize.toast("<i class='material-icons mdi-action-cached teal-text text-lighten-1'></i> &nbsp;<b>{{ message }}</b>", 4000);
                     {% endfor %}
 

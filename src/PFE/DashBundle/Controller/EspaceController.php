@@ -27,9 +27,9 @@ class EspaceController extends Controller
         $y = $req->get('actionyear');
         $m = $req->get('actionmonth');
 
-        $entities = $em->getRepository('PFEDashBundle:Espace')->findByDate($y,$m);
+        $entities = $em->getRepository('PFEDashBundle:Espace')->findAll();
 
-        return $this->render('PFEDashBundle:Espace:index.html.twig', array(
+        return $this->render('PFEDashBundle:espace:index.html.twig', array(
             'currt' => 'Espace',
             'entities' => $entities,
             'm' => $m, 'y' => $y,
@@ -72,12 +72,12 @@ class EspaceController extends Controller
      */
     private function createCreateForm(Espace $entity)
     {
-        $form = $this->createForm(new EspaceType(), $entity, array(
+        $form = $this->createForm('PFE\DashBundle\Form\EspaceType', $entity, array(
             'action' => $this->generateUrl('pfe_saisi_espace_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => '<i class="mdi-av-playlist-add left"></i> Enregistrer'));
+        //$form->add('submit', 'submit', array('label' => '<i class="mdi-av-playlist-add left"></i> Enregistrer'));
 
         return $form;
     }
@@ -124,25 +124,25 @@ class EspaceController extends Controller
      * Displays a form to edit an existing Espace entity.
      *
      */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
+    public function editAction(Request $request, Espace $espace){
 
-        $entity = $em->getRepository('PFEDashBundle:Espace')->find($id);
+    $edit_form=$this->createForm('PFE\DashBundle\Form\EspaceType',$espace);
+    $edit_form->handleRequest($request);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Espace entity.');
-        }
+    if($edit_form->isSubmitted() && $edit_form->isValid()){
+        $em=$this->getDoctrine()->getManager()->flush();
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+            $request->getSession()
+                ->getFlashbag()
+                ->add('edit','Espace modifié');
+    
+        return $this->redirectToRoute('pfe_saisi_espace_edit',array('id'=>$espace->getId()));        
+    }
 
-        return $this->render('PFEDashBundle:Espace:edit.html.twig', array(
-            'currt' => 'Espace',
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+       return $this->render('PFEDashBundle:espace:edit.html.twig', array(
+          'edit_form'=>$edit_form->createView(),
+          'espace'=>$espace
+       ));
     }
 
     /**
@@ -163,40 +163,7 @@ class EspaceController extends Controller
 
         return $form;
     }
-    /**
-     * Edits an existing Espace entity.
-     *
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('PFEDashBundle:Espace')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Espace entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            $request->getSession()
-                ->getFlashBag()
-                ->add('update', 'Informations actualisées !');
-
-            return $this->redirect($this->generateUrl('pfe_saisi_espace_edit', array('id' => $id)));
-        }
-
-        return $this->render('PFEDashBundle:Espace:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+ 
     /**
      * Deletes a Espace entity.
      *
@@ -241,5 +208,26 @@ class EspaceController extends Controller
                                                         'attr'=>array('class'=>'red')))
             ->getForm()
         ;
+    }
+
+        public function removeAction(Request $request, $id)
+    {
+        
+        $em = $this->getDoctrine()->getManager();
+        $espace=$em->getRepository('PFEDashBundle:Espace')->find($id);
+
+            if (!$espace) {
+                throw $this->createNotFoundException('Unable to find Espace entity.');
+            }
+
+            $em->remove($espace);
+            $em->flush();
+
+            $request->getSession()
+                ->getFlashBag()
+                ->add('delete', 'Espace supprimé.');
+        
+
+        return $this->redirect($this->generateUrl('pfe_saisi_espace'));
     }
 }

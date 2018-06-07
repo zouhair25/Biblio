@@ -1,0 +1,19 @@
+typeespace_index:
+    path:     /
+    defaults: { _controller: "PFEDashBundle:Typeespace:index"}
+    methods: GET
+
+typeespace_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PFEDashBundle:Typeespace:edit"}
+    methods: [GET,POST]
+
+typeespace_new:
+    path:     /new
+    defaults: {_controller: "PFEDashBundle:Typeespace:new"}
+    methods: [GET,POST]
+
+typeespace_remove:
+    path:     /{id}/remove
+    defaults: {_controller: "PFEDashBundle:Typeespace:remove"}
+    methods: [GET,POST]

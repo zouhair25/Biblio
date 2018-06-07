@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row card-panel title top-teal col s11 cols2 crudcard">
+    <h5 class="card-title" style="text-align:left !important">Création bibliotheque </h5>
+
+    {{ form_start(editForm) }}
+        <div class="row">
+            <div class="input-field col s6">{{form_row(editForm.nom)}}</div>
+        </div>
+        
+       
+         <div class="row">
+            <div class="input-field col s2">  <button type="submit" value="Create" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></button></div>
+            <div class="input-field col s3"> 
+                <a href="{{ path('typeespace_index') }}" class="btn blue-grey mdi-action-view-headline"> Retour à la liste</a></div>
+        </div>
+        
+    {{ form_end(editForm) }}
+
+   
+        
+</div>
+    <script>
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 150, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false, // Close upon selecting a date,
+    format: 'yyyy-mm-dd'
+  });
+    </script>
+{% endblock %}

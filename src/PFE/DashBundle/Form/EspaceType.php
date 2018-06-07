@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class EspaceType extends AbstractType
 {
     /**
@@ -22,23 +23,30 @@ class EspaceType extends AbstractType
                 'choices_as_values' => true,)*/
             )
             ->add('etat',CheckboxType::class
-                /*, array(
-                'choices'  => array(
+                , array(
+                /*'choices'  => array(
                     'Bon' => 1,
                     'Médiocre' => 0),
-                'choices_as_values' => true,)*/
+                'choices_as_values' => true,*/
+                )
             )
             ->add('nombrePlaceAssises')
             //->add('created')
-            /*->add('typeespace','entity', array(
-                'class' =>  'PFE\DashBundle\Entity\Typeespace',
-                'property' => 'nom'
-            ))*/
-            ->add('bibliotheque',BibliothequeType::class
-               /* , array(
-                    'class' =>  'PFE\DashBundle\Entity\Bibliotheque',
-                'property' => 'nom')*/
+            ->add('typeespace',EntityType::class, array(
+                'class' =>  'PFEDashBundle:Typeespace',
+                'choice_label' => 'nom'
+            ))
+            ->add('bibliotheque',EntityType::class,array(
+                    'class' =>  'PFEDashBundle:Bibliotheque',
+                    'choice_label' => 'nom',
+                    'multiple'=>false)
             )
+            ->add('bibliotheque',EntityType::class,array(
+                    'class' =>  'PFEDashBundle:Bibliotheque',
+                    'choice_label' => 'nom',
+                    'multiple'=>false)
+            )
+
         ;
     }
     

@@ -22,3 +22,7 @@ province_delete:
     path:     /{id}/delete
     defaults: { _controller: "PFEDashBundle:Province:delete" }
     methods:  DELETE
+
+province_remove:
+    path:     /{id}/remove
+    defaults: { _controller: "PFEDashBundle:Province:remove" }

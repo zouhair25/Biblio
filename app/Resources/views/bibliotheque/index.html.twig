@@ -4,7 +4,7 @@
 {% endblock %}
 {% block body %}
 <div class="row card-panel title top-grey col s11 cols2 crudcard"> 
-    <h5 class="card-title">Listes bibliotheques </h5>
+    <h5 class="card-title">Listes bibliothèques </h5>
 
     <table class="records-list borderd hoverable">
         <thead>
@@ -19,7 +19,7 @@
                 <th>Email</th>
                <!-- <th>Date installation</th>-->
                 <th>Formation</th>
-                <th></th>
+                <th style="text-align: right;">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -35,11 +35,10 @@
                 <td>{{ bibliotheque.email }}</td>
                <!-- <td>{% if bibliotheque.dateInstallationInternet %}{{ bibliotheque.dateInstallationInternet|date('d-m-Y') }}{% endif %}</td>-->
                 <td>{% if bibliotheque.isFormation %}Oui{% else %}Non{% endif %}</td>
-                <td>
-                
-                            <a href="{{ path('pfe_admin_bibliotheque_edit', { 'id': bibliotheque.id }) }}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a>
+                <td> <a href="{{ path('pfe_admin_bibliotheque_edit', { 'id': bibliotheque.id }) }}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a>
                       
                 </td>
+                <td> <a href="{{ path('pfe_admin_bibliotheque_remove', { 'id': bibliotheque.id }) }}" class="btn-floating btn-large waves-effet wave-light red" onclick="return confirmed('Voulez vous vraiment supprimer ?"><i class="material-icons">delete</i></a></td>
             </tr>
         {% endfor %}
         </tbody>

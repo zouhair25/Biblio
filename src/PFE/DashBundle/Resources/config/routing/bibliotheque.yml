@@ -27,3 +27,7 @@ pfe_admin_bibliotheque_test:
     path:     /test
     defaults: { _controller: "PFEDashBundle:Bibliotheque:test" }
     methods:  GET
+
+pfe_admin_bibliotheque_remove:
+    path:     /{id}/remove
+    defaults: { _controller: "PFEDashBundle:Bibliotheque:remove" }

@@ -42,7 +42,11 @@ class BibliothequeController extends Controller
             $em->persist($bibliotheque);
             $em->flush();
 
-            return $this->redirectToRoute('pfe_admin_bibliotheque_show', array('id' => $bibliotheque->getId()));
+            $request->getSession()
+                    ->getFlashbag()
+                    ->add('add','Nouvelle bibliothèque ajouté');
+
+            return $this->redirectToRoute('pfe_admin_bibliotheque', array('id' => $bibliotheque->getId()));
         }
 
         return $this->render('bibliotheque/new.html.twig', array(
@@ -77,7 +81,10 @@ class BibliothequeController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+           
+           $request->getSession()
+                   ->getFlashbag()
+                   ->add('edit','Bibliothèque modifié');
             return $this->redirectToRoute('pfe_admin_bibliotheque_edit', array('id' => $bibliotheque->getId()));
         }
 
@@ -101,6 +108,9 @@ class BibliothequeController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($bibliotheque);
             $em->flush();
+            $request->getSession()
+                ->getFlashBag()
+                ->add('edit', 'Adhérent modifié.');
         }
 
         return $this->redirectToRoute('pfe_admin_bibliotheque');
@@ -132,5 +142,20 @@ class BibliothequeController extends Controller
         return $this->render('bibliotheque/test.html.twig', array(
             'bibliotheques' => $bibliotheques,
         ));
+    }
+
+    public function removeAction(Request $request,$id){
+
+        $b =new Bibliotheque();
+        $em=$this->getDoctrine()->getManager();
+        $b=$em->getRepository('PFEDashBundle:Bibliotheque')->find($id);
+        $em->remove($b);
+        $em->flush();
+        $request->getSession()
+                ->getFlashBag()
+                ->add('delete', 'Bibliothèque supprimé.');
+
+        return $this->redirectToRoute('pfe_admin_bibliotheque');
+
     }
 }

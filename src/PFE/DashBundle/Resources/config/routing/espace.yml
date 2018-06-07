@@ -24,7 +24,6 @@ pfe_saisi_espace_update:
     defaults: { _controller: "PFEDashBundle:Espace:update" }
     methods:  [POST, PUT]
 
-pfe_saisi_espace_delete:
-    path:     /{id}/delete
-    defaults: { _controller: "PFEDashBundle:Espace:delete" }
-    methods:  [POST, DELETE]
+pfe_saisi_espace_remove:
+    path:     /{id}/remove
+    defaults: { _controller: "PFEDashBundle:Espace:remove" }

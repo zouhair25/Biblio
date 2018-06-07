@@ -6,10 +6,40 @@
 
 {% block body -%}
 <div class="row card-panel wtitle top-teal col s11 cols2 crudcard">
-  <h5 class="card-title">Adherent edit</h5>
+  <h5 class="card-title">éditer adhérent </h5>
 		{{ form_start(edit_form) }}
-	    {{form_widget(edit_form)}}
-	    <button type="submit" name="Edit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></button>
+		<div class="row">   
+	        <div class="input-field col s6">
+	    {{form_row(edit_form.nom)}}
+	    </div></div>
+
+	    <div class="row">   
+	        <div class="input-field col s6">
+	    {{form_row(edit_form.prenom)}}
+	    </div></div>
+       
+        <div class="row">   
+	        <div class="input-field col s6">
+	     {{form_row(edit_form.dateNaissance)}}
+	     </div></div>
+
+        <div class="row">   
+	        <div class="input-field col s6">
+	     {{form_row(edit_form.sexe)}}
+	     </div></div>
+	    
+	    <div class="row">   
+	        <div class="input-field col s6">
+	     {{form_row(edit_form.bibliotheque)}}
+	     </div></div>
+
+
+        <div class="row">
+	    <div class="input-field col s1"> <button type="submit" name="Edit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></button></div>
+	      
+
+	    <div class="input-field col s3"><a href="{{ path('pfe_saisi_adherent') }}" class="btn blue-grey"><i class="mdi-action-view-headline right"></i>Retour à la liste</a></div>
+	    </div>
 	  {{form_end(edit_form)}}
 </div>
 {% endblock %}

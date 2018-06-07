@@ -69,6 +69,9 @@ class TutelleController extends Controller{
     if($editForm->isValid() && $editForm->isSubmitted()){
     	$this->getDoctrine()->getManager()->flush();
        
+        $request->getSession()
+                ->getFlashBag()
+                ->add('edit', 'Tutelle modifié.');
        return $this->redirectToRoute('pfe_tutelle_edit',array('id'=>$tutelle->getId()));
     }
     return $this->render('tutelle/edit.html.twig',array(
@@ -97,6 +100,10 @@ class TutelleController extends Controller{
 		$tutelle=$em->getRepository('PFEDashBundle:Tutelle')->find($id);
 		$em->remove($tutelle);
 		$em->flush();
+
+     $request->getSession()
+                ->getFlashBag()
+                ->add('delete', 'Tutelle supprimé.');
 		return $this->redirectToRoute('pfe_tutelle_index');
 	}
 }

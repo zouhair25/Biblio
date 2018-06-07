@@ -24,17 +24,35 @@ class AdherentController extends Controller
         $em = $this->getDoctrine()->getManager();
         $req = $request->request;
 
-        $y = $req->get('actionyear');
-        $m = $req->get('actionmonth');
+       // $y = $req->get('actionyear');
+      //  $m = $req->get('actionmonth');
 
-        $entities = $em->getRepository('PFEDashBundle:Adherent')->findByDate($y,$m);
+        $entities = $em->getRepository('PFEDashBundle:Adherent')->findAll();
 
         return $this->render('PFEDashBundle:Adherent:index.html.twig', array(
-            'currt' => 'Adherent',
+           // 'currt' => 'Adherent',
             'entities' => $entities,
-            'm' => $m, 'y' => $y,
+           // 'm' => $m, 'y' => $y,
         ));
     }
+
+     public function removeAction(Request $request,$id)
+    {
+        $adherent=new Adherent();
+        $em = $this->getDoctrine()->getManager();
+        $adherent=$em->getRepository('PFEDashBundle:Adherent')->find($id);
+        $em->remove($adherent);
+        $em->flush();
+
+       // $y = $req->get('actionyear');
+      //  $m = $req->get('actionmonth');
+
+           $request->getSession()
+                ->getFlashBag()
+                ->add('delete', 'Adhérent supprimé.');
+        return $this->redirectToRoute('pfe_saisi_adherent');
+    }
+
     /**
      * Creates a new Adherent entity.
      *
@@ -132,7 +150,10 @@ class AdherentController extends Controller
        if($editForm->isSubmitted() && $editForm->isValid()){
          
          $this->getDoctrine()->getManager()->flush();
-
+         
+             $request->getSession()
+                ->getFlashBag()
+                ->add('edit', 'Adhérent modifié.');
          return $this->redirectToRoute('pfe_saisi_adherent_edit',array('id'=>$adherent->getId()));
         }
        

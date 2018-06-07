@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Province edit</h1>
-
+ 
+<div class="row card-panel title top-teal col s11 cols2 crudcard">
+          <h5 class="card-title" style="text-align:left !important">Modifier province </h5>
     {{ form_start(edit_form) }}
+    <div class="row">
+            <div class="input-field col s6">
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+      </div></div>
+
+         <div class="row">
+            <div class="input-field col s1"><button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></button></div>
+            <div class="input-field col s3"><a href="{{ path('province_index') }}" class="btn blue-grey"><i class="mdi-action-view-headline right"></i>Retour à la liste</a></div>
+        </div>
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('province_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+  
+</div>
 {% endblock %}

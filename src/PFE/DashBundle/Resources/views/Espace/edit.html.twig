@@ -6,27 +6,46 @@
 
 {% block body -%}
     <div class="row card-panel wtitle top-teal col s11 cols2 crudcard">
-        <h5 class="card-title">Espace edit</h5>
+        <h5 class="card-title">Edit espace </h5>
         {{ form_start(edit_form) }}
         <div class="row">
             <div class="input-field col s6">
                 {{ form_row(edit_form.isDisponible) }}
             </div>
+        </div>
+        <div class="row">
             <div class="input-field col s6">
                 {{ form_row(edit_form.etat) }}
             </div>
-            <div class="input-field col s6">
+        </div>
+        <div class="row">
+            <div class="input-field col s3">
                 {{ form_row(edit_form.nombrePlaceAssises) }}
             </div>
-            <div class="input-field col s6">
+        </div>
+        <div class="row">
+            <div class="input-field col s5">
                 {{ form_row(edit_form.typeespace) }}
             </div>
-            {{ form_widget(edit_form) }}
+        </div>
+        <div class="row">
+           <div class="input-field col s6">
+                {{ form_row(edit_form.bibliotheque) }}
+            </div>
+        </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s1"></div>
+           <div class="input-field col s1"><button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></button></div>
+             <div class="input-field col s3"> 
             <a href="{{ path('pfe_saisi_espace') }}" class="btn blue-grey">
                 <i class="mdi-action-view-headline left"></i> Retour à la liste
-            </a>
-            {{ form_end(edit_form) }}
-            <div class="record_actions">{{ form(delete_form) }}</div>
+            </a></div>
         </div>
+            
+            {{ form_end(edit_form) }}
+           
+        
     </div>
 {% endblock %}

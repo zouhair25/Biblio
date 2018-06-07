@@ -62,4 +62,7 @@ pfe_dash_tutelle:
     resource: "@PFEDashBundle/Resources/config/routing/tutelle.yml"
     prefix:   /tutelle
 
+pfe_dash_typeespace:
+    resource: "@PFEDashBundle/Resources/config/routing/typeespace.yml"
+    prefix:   /typeespace
 

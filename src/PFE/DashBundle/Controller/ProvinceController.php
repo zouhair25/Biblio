@@ -41,8 +41,10 @@ class ProvinceController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($province);
             $em->flush();
-
-            return $this->redirectToRoute('province_show', array('id' => $province->getId()));
+           $request->getSession()
+                  ->getFlashbag()
+                  ->add('add','Province ajouté');
+            return $this->redirectToRoute('province_index', array('id' => $province->getId()));
         }
 
         return $this->render('province/new.html.twig', array(
@@ -78,7 +80,10 @@ class ProvinceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('province_edit', array('id' => $province->getId()));
+          $request->getSession()
+                  ->getFlashbag()
+                  ->add('edit','Province modifié');
+            return $this->redirectToRoute('province_index', array('id' => $province->getId()));
         }
 
         return $this->render('province/edit.html.twig', array(
@@ -120,5 +125,22 @@ class ProvinceController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+
+    public function removeAction(Request $request, $id){
+
+       // $province=new Province();
+        $em=$this->getDoctrine()->getManager();
+        $province=$em->getRepository('PFEDashBundle:Province')->find($id);
+        $em->remove($province);
+        $em->flush();
+
+        $request->getSession()
+                ->getFlashbag()
+                ->add('delete','Province supprimé.');
+
+
+        return $this->redirectToRoute('province_index');
     }
 }

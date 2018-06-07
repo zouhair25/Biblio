@@ -15,24 +15,27 @@
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Date naissance</th>
-                <th>Age</th>
+                <!--<th>Age</th>-->
                 <th>Sexe</th>
-                <th>Actions</th>
+                <th colspan="2">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td>{% if entity.dateInscription %}{{ entity.dateInscription|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if entity.dateInscription %}{{ entity.dateInscription|date('d-m-Y') }}{% endif %}</td>
                 <td>{{ entity.nom|upper }}</td>
                 <td>{{ entity.prenom|title }}</td>
-                <td>{% if entity.dateNaissance %}{{ entity.dateNaissance|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ entity.age }}</td>
+                <td>{% if entity.dateNaissance %}{{ entity.dateNaissance|date('d-m-Y') }}{% endif %}</td>
+               <!-- <td>{# entity.age #}</td>-->
                 <td>{% if entity.sexe %}<span class="badge new green">Homme</span> {% else %} <span class="badge new pink">Femme</span> {% endif %} </td>
                 <td>
                     <a href="{{ path('pfe_saisi_adherent_edit', { 'id': entity.id }) }}" class="btn-floating btn-large waves-effect waves-light red">
                         <i class="material-icons">edit</i></a>
+                       
                 </td>
+                <td>    <a href="{{ path('pfe_saisi_adherent_remove', { 'id': entity.id }) }}" class="btn-floating btn-large waves-effect waves-light red" onclick="return confirm('Voulez vous vraiment supprimer')">
+                        <i class="material-icons">delete</i></a></td>
             </tr>
         {% endfor %}
         </tbody>
