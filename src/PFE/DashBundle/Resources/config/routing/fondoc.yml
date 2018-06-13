@@ -29,3 +29,7 @@ pfe_saisi_fondoc_delete:
     path:     /{id}/delete
     defaults: { _controller: "PFEDashBundle:Fondoc:delete" }
     methods:  [POST, DELETE]
+    
+pfe_saisi_fondoc_remove:
+    path:     /{id}/remove
+    defaults: { _controller: "PFEDashBundle:Fondoc:remove" }

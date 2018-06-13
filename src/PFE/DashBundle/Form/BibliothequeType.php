@@ -51,10 +51,7 @@ class BibliothequeType extends AbstractType
                     'class'=>'PFEDashBundle:Province',
                     'choice_label'=>'nom',
                     'multiple'=>false))
-               /* ->add('tutelle',EntityType::class,array(
-                    'class'=>'PFEDashBundle:Tutelle',
-                    'choice_label'=>'nom',
-                    'multiple'=>false))*/
+               
                 ;
     }
 

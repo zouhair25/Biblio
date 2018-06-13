@@ -16,7 +16,7 @@
                 {{ form_row(edit_form.typeequipement) }}
             </div>
             <div class="input-field col s4">
-                {{ form_row(edit_form.isDisponible) }}
+         
             </div>
         </div>
         <div class="row">
@@ -29,12 +29,14 @@
             <div class="input-field col s4">
                 {{ form_row(edit_form.nombre_nutilisable) }}
             </div>
-            {{ form_widget(edit_form) }}
-            <a href="{{ path('pfe_saisi_equipement') }}" class="btn blue-grey">
-                <i class="mdi-action-view-headline left"></i> Retour à la liste
-            </a>
+            
+            
+              <div class="row">
+            <div class="input-field col s1"><button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></button></div>
+            <div class="input-field col s3"><a href="{{ path('pfe_saisi_equipement') }}" class="btn blue-grey"><i class="mdi-action-view-headline right"></i>Retour à la liste</a></div>
+        </div>
             {{ form_end(edit_form) }}
-            <div class="record_actions">{{ form(delete_form) }}</div>
+    
         </div>
     </div>
 {% endblock %}

@@ -6,25 +6,37 @@
 
 {% block body -%}
     <div class="row card-panel wtitle top-teal col s11 cols2 crudcard">
-        <h5 class="card-title">Pret creation</h5>
+        <h5 class="card-title">Création prêts </h5>
         {{ form_start(form) }}
         <div class="row">
             <div class="input-field col s6">
                 {{ form_row(form.description) }}
             </div>
+        </div>
+        <div class="row">
             <div class="input-field col s6">
                 {{ form_row(form.nombre) }}
             </div>
+        </div>
+        <div class="row">
             <div class="input-field col s6">
                 {{ form_row(form.typepret) }}
             </div>
+        </div>
+        <div class="row">
             <div class="input-field col s6">
                 {{ form_row(form.fondoc) }}
             </div>
-            {{ form_widget(form) }}
-            <a href="{{ path('pfe_saisi_pret') }}" class="btn blue-grey">
-                <i class="mdi-action-view-headline left"></i> Retour à la liste
-            </a>
+        </div>
+        <div class="row">
+            
+        </div>    
+             <div class="row">
+            <div class="input-field col s2">  <button type="submit" value="Create" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></button></div>
+            <div class="input-field col s3"> 
+                <a href="{{ path('pfe_saisi_pret') }}" class="btn blue-grey mdi-action-view-headline left"> Retour à la liste</a></div>
+        </div>
+        
             {{ form_end(form) }}
         </div>
     </div>

@@ -29,10 +29,13 @@
         <div class="input-field col s4">
             {{ form_row(form.nombre_nutilisable) }}
         </div>
+
         {{ form_widget(form) }}
-        <a href="{{ path('pfe_saisi_equipement') }}" class="btn blue-grey">
-            <i class="mdi-action-view-headline left"></i> Retour à la liste
-        </a>
+        <div class="row">
+            <div class="input-field col s2">  <button type="submit" value="Create" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></button></div>
+            <div class="input-field col s3"> 
+                <a href="{{ path('pfe_saisi_equipement') }}" class="btn blue-grey"> Retour à la liste</a></div>
+        </div>
         {{ form_end(form) }}
     </div>
 </div>

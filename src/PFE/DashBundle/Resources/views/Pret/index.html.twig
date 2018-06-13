@@ -6,11 +6,11 @@
 
 {% block body -%}
 <div class="row card-panel wtitle top-grey col s11 cols2 crudcard">
-    <h5 class="card-title">Pret list</h5>
+    <h5 class="card-title">Liste prêts </h5>
     <table class="records_list bordered hoverable">
         <thead>
             <tr>
-                <th>Created</th>
+                <th>Date création</th>
                 <th>Description</th>
                 <th>Nombre</th>
                 <th>Actions</th>
@@ -19,13 +19,13 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td>{% if entity.created %}{{ entity.created|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if entity.created %}{{ entity.created|date('d-m-Y') }}{% endif %}</td>
                 <td>{{ entity.description }}</td>
                 <td>{{ entity.nombre }}</td>
-                <td>
-                    <a href="{{ path('pfe_saisi_pret_edit', { 'id': entity.id }) }}" class="btn-flat waves-effect waves-teal">
-                        <i class="mdi-editor-mode-edit"></i></a>
-                </td>
+                
+                <td><a href="{{path('pfe_saisi_pret_edit',{'id':entity.id})}}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a></td>
+
+            <td><a href="{{path('pfe_saisi_pret_remove',{'id':entity.id})}}" class="btn-floating btn-large waves-effet wave-light red" onclick="return confirm('Voulez vous vraiment supprimer')"><i class="material-icons">delete</i></a></td>
             </tr>
         {% endfor %}
         </tbody>

@@ -18,7 +18,9 @@ class FondocType extends AbstractType
     {
         $builder
             ->add('nombre',TextType::class)
-            ->add('created',DateType::class)
+           /* ->add('created',DateType::class,array(
+                'widget'=>'single_text',
+                'attr'=>['class'=>'datepicker']))*/
             ->add('typefondoc',EntityType::class, array(
                 'class' =>  'PFEDashBundle:Typefondoc',
                 'choice_label' => 'nom'

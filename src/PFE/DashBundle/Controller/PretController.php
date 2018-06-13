@@ -22,27 +22,27 @@ class PretController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $req = $request->request;
+        //$req = $request->request;
 
-        $y = $req->get('actionyear');
-        $m = $req->get('actionmonth');
+       //// $y = $req->get('actionyear');
+       // $m = $req->get('actionmonth');
 
-        $entities = $em->getRepository('PFEDashBundle:Pret')->findByDate($y,$m);
+        $entities = $em->getRepository('PFEDashBundle:Pret')->findAll();
 
         return $this->render('PFEDashBundle:Pret:index.html.twig', array(
-            'currt' => 'Pret',
+           // 'currt' => 'Pret',
             'entities' => $entities,
-            'm' => $m, 'y' => $y,
+           // 'm' => $m, 'y' => $y,
         ));
     }
     /**
      * Creates a new Pret entity.
      *
      */
-    public function createAction(Request $request)
+    public function newAction(Request $request)
     {
         $entity = new Pret();
-        $form = $this->createCreateForm($entity);
+        $form = $this->CreateForm('PFE\DashBundle\Form\PretType',$entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -86,7 +86,7 @@ class PretController extends Controller
      * Displays a form to create a new Pret entity.
      *
      */
-    public function newAction()
+    public function new1Action()
     {
         $entity = new Pret();
         $form   = $this->createCreateForm($entity);
@@ -124,25 +124,26 @@ class PretController extends Controller
      * Displays a form to edit an existing Pret entity.
      *
      */
-    public function editAction($id)
+    public function editAction(Request $request,Pret $pret )
     {
-        $em = $this->getDoctrine()->getManager();
+        
+        $form=$this->createForm('PFE\DashBundle\Form\PretType',$pret);
+        $form->handleRequest($request);
 
-        $entity = $em->getRepository('PFEDashBundle:Pret')->find($id);
+        if($form->isSubmitted()&& $form->isValid()){
+             $em = $this->getDoctrine()->getManager()->flush();
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Pret entity.');
+
+             $request->getSession()
+                ->getFlashbag()
+                ->add('add','Type prêts modifié');
+    
+        return $this->redirectToRoute('pfe_saisi_pret_edit',array('id'=>$pret->getId()));     
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('PFEDashBundle:Pret:edit.html.twig', array(
-            'currt' => 'Pret',
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+            'edit_form'   => $form->createView()));
+         
     }
 
     /**
@@ -241,5 +242,29 @@ class PretController extends Controller
                                                         'attr'=>array('class'=>'red')))
             ->getForm()
         ;
+    }
+
+      public function removeAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('PFEDashBundle:Pret')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Pret entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+
+            $request->getSession()
+                ->getFlashBag()
+                ->add('delete', 'Prêt supprimé.');
+        }
+
+        return $this->redirect($this->generateUrl('pfe_saisi_pret'));
     }
 }

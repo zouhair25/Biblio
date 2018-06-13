@@ -27,9 +27,9 @@ class FondocController extends Controller
         $y = $req->get('actionyear');
         $m = $req->get('actionmonth');
 
-        $entities = $em->getRepository('PFEDashBundle:Fondoc')->findByDate($y,$m);
+        $entities = $em->getRepository('PFEDashBundle:Fondoc')->findAll();
 
-        return $this->render('PFEDashBundle:Fondoc:index.html.twig', array(
+        return $this->render('Fondoc/index.html.twig', array(
             'currt' => 'Fond documentaire',
             'entities' => $entities,
             'm' => $m, 'y' => $y,
@@ -86,30 +86,52 @@ class FondocController extends Controller
      * Displays a form to create a new Fondoc entity.
      *
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request){
         $fondoc=new Fondoc();
         $form=$this->createForm('PFE\DashBundle\Form\FondocType',$fondoc);
         $form->handleRequest($request);
-
         if($form->isValid() && $form->isSubmitted()){
 
             $em=$this->getDoctrine()->getManager();
             $em->persist($fondoc);
             $em->flush();
-            return $this->redirectToRoute('pfe_saisi_fondoc_new',array('id'=>$fondoc->getId()));
-        
-        }
 
+               $request->getSession()
+                    ->getFlashbag()
+                    ->add('add','Nouvelle fond documentaire ajouté');
+
+            return $this->redirectToRoute('pfe_saisi_fondoc',array('id'=>$fondoc->getId()));       
+        }
         return $this->render('Fondoc/new.html.twig', array(
            // 'currt' => 'Fond documentaire',
             'entity' => $fondoc,
             'form'   => $form->createView(),
         ));
     }
-
-
     /**
+     * Displays a form to edit an existing Fondoc entity.
+     *
+     */
+    public function editAction(Request $request, Fondoc $fondoc){
+        $form=$this->createForm('PFE\DashBundle\Form\FondocType',$fondoc);
+        $form->handleRequest($request);
+        if($form->isValid() && $form->isSubmitted()){
+        $em = $this->getDoctrine()->getManager()->flush();  
+            $request->getSession()
+                    ->getFlashbag()
+                    ->add('edit','Fond documentaire modifié');
+        return $this->redirectToRoute('pfe_saisi_fondoc_edit',array('id'=>$fondoc->getId()));            
+        }      
+
+
+        return $this->render('Fondoc/edit.html.twig', array(
+            'currt' => 'Fond documentaire',
+            'entity'      => $fondoc,
+            'edit_form'   => $form->createView(),
+        ));
+    }
+
+/**
      * Finds and displays a Fondoc entity.
      *
      */
@@ -130,32 +152,6 @@ class FondocController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
-    /**
-     * Displays a form to edit an existing Fondoc entity.
-     *
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('PFEDashBundle:Fondoc')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Fondoc entity.');
-        }
-
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('PFEDashBundle:Fondoc:edit.html.twig', array(
-            'currt' => 'Fond documentaire',
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
     /**
     * Creates a form to edit a Fondoc entity.
     *
@@ -236,6 +232,27 @@ class FondocController extends Controller
         return $this->redirect($this->generateUrl('pfe_saisi_fondoc'));
     }
 
+
+  public function removeAction(Request $request, $id)
+    {
+      
+        
+         $em = $this->getDoctrine()->getManager();
+         $entity = $em->getRepository('PFEDashBundle:Fondoc')->find($id);
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Fondoc entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+
+            $request->getSession()
+                ->getFlashBag()
+                ->add('delete', 'Documents supprimés.');
+        
+
+        return $this->redirect($this->generateUrl('pfe_saisi_fondoc'));
+    }
     /**
      * Creates a form to delete a Fondoc entity by id.
      *

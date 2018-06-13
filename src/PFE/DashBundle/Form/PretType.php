@@ -4,7 +4,16 @@ namespace PFE\DashBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class PretType extends AbstractType
 {
@@ -15,16 +24,16 @@ class PretType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
+            ->add('description',TextType::class)
             ->add('nombre')
             //->add('created')
-            ->add('typepret','entity', array(
-                'class' =>  'PFE\DashBundle\Entity\Typepret',
-                'property' => 'nom'
+            ->add('typepret',EntityType::class, array(
+                'class' =>  'PFEDashBundle:Typepret',
+                'choice_label' => 'nom'
             ))
-            ->add('fondoc','entity', array(
-                'class' =>  'PFE\DashBundle\Entity\Fondoc',
-                'property' => 'typefondoc.nom'
+            ->add('fondoc',EntityType::class, array(
+                'class' =>  'PFEDashBundle:Fondoc',
+                'choice_label' => 'nom'
             ))
         ;
     }

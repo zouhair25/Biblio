@@ -24,6 +24,4 @@ pfe_user:
 pfe_dash:
     resource: "@PFEDashBundle/Resources/config/routing.yml"
     prefix:   /
-pfe_dash_tutelle:
-    resource: "@PFEDashBundle/Resources/config/routing/tutelle.yml"
-    prefix:   /tutelle
+    

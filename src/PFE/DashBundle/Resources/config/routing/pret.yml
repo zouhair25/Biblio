@@ -9,20 +9,15 @@ pfe_saisi_pret_show:
 pfe_saisi_pret_new:
     path:     /new
     defaults: { _controller: "PFEDashBundle:Pret:new" }
-
-pfe_saisi_pret_create:
-    path:     /create
-    defaults: { _controller: "PFEDashBundle:Pret:create" }
-    methods:  POST
+    methods:  [GET, POST]
 
 pfe_saisi_pret_edit:
     path:     /{id}/edit
     defaults: { _controller: "PFEDashBundle:Pret:edit" }
 
-pfe_saisi_pret_update:
-    path:     /{id}/update
-    defaults: { _controller: "PFEDashBundle:Pret:update" }
-    methods:  [POST, PUT]
+pfe_saisi_pret_remove:
+    path:     /{id}/remove
+    defaults: { _controller: "PFEDashBundle:Pret:remove" }
 
 pfe_saisi_pret_delete:
     path:     /{id}/delete

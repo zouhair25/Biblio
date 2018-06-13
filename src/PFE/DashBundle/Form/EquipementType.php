@@ -8,8 +8,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use PFE\DashBundle\Form\TypeequipementType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use PFE\DashBundle\Form\EspaceType;
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class EquipementType extends AbstractType
 {
     /**
@@ -19,30 +20,30 @@ class EquipementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            /*->add('isDisponible',CheckboxType::class
+            ->add('isDisponible',ChoiceType::class
                 , array(
                 'choices'  => array(
                     'Disponible' => 1,
-                    'Non disponible' => 0),
-                'choices_as_values' => true, )
+                    'Non disponible' => 0)
+               )
                 
-           )*/
+           )
             ->add('nombre')
             ->add('nombre_endommage')
             ->add('nombre_nutilisable')
             //->add('created') 
             //TypeequipementType::class
-            ->add('typeequipement',TypeequipementType::class
-                /*'entity', array(
-                'class' =>  'PFE\DashBundle\Entity\Typeequipement',*/
-               // 'property' => 'nom'
-            //)
+            ->add('typeequipement',EntityType::class, 
+                 array(
+                 'class' =>  'PFEDashBundle:Typeequipement',
+                 'choice_label' => 'nom'
+            )
         )
-            ->add('espace',EspaceType::class
-                /*'entity', array(
-                'class' =>  'PFE\DashBundle\Entity\Espace',
-                //'property' => 'typeespace.nom'
-            )*/
+            ->add('espace',EntityType::class,array(
+                   'class' =>  'PFEDashBundle:Espace',
+                   'choice_label' => 'typeespace.nom',
+                   'multiple'=>false
+            )
             )
         ;
     }

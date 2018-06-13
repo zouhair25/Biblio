@@ -1,3 +1,7 @@
+pfe_dash_typepret:
+    resource: "@PFEDashBundle/Resources/config/routing/typepret.yml"
+    prefix:   /typepret
+    
 pfe_dash_bibliotheque:
     resource: "@PFEDashBundle/Resources/config/routing/bibliotheque.yml"
     prefix:   /admin/bibliotheque
@@ -56,13 +60,10 @@ pfe_dash_province:
 index_projet:
     resource: "@PFEDashBundle/Resources/config/routing/dash.yml"
     prefix:   /dash
-    
 
-pfe_dash_tutelle:
-    resource: "@PFEDashBundle/Resources/config/routing/tutelle.yml"
-    prefix:   /tutelle
 
 pfe_dash_typeespace:
     resource: "@PFEDashBundle/Resources/config/routing/typeespace.yml"
     prefix:   /typeespace
+
 

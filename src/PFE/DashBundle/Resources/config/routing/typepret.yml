@@ -1,0 +1,19 @@
+typepret_index:
+    path:     /
+    defaults: { _controller: "PFEDashBundle:Typepret:index"}
+    methods: GET
+
+typepret_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PFEDashBundle:Typepret:edit"}
+    methods: [GET,POST]
+
+typepret_new:
+    path:     /new
+    defaults: {_controller: "PFEDashBundle:Typepret:new"}
+    methods: [GET,POST]
+
+typepret_remove:
+    path:     /{id}/remove
+    defaults: {_controller: "PFEDashBundle:Typepret:remove"}
+    methods: [GET,POST]

@@ -123,10 +123,6 @@ class Bibliotheque
     private $province;
 
     /**
-     * @ORM\ManyToMany(targetEntity="PFE\DashBundle\Entity\Tutelle", mappedBy="bibliotheque")
-     */
-    private $tutelle;
-    /**
      * Constructor
      */
     public function __construct()
@@ -138,7 +134,6 @@ class Bibliotheque
         $this->adherent = new \Doctrine\Common\Collections\ArrayCollection();
         $this->socialMedia = new \Doctrine\Common\Collections\ArrayCollection();
         $this->remarque = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tutelle = new \Doctrine\Common\Collections\ArrayCollection();
         $this->isFormation = false;
     }
 
@@ -634,39 +629,6 @@ class Bibliotheque
     public function getProvince()
     {
         return $this->province;
-    }
-
-    /**
-     * Add tutelle
-     *
-     * @param \PFE\DashBundle\Entity\Tutelle $tutelle
-     * @return Bibliotheque
-     */
-    public function addTutelle(\PFE\DashBundle\Entity\Tutelle $tutelle)
-    {
-        $this->tutelle[] = $tutelle;
-
-        return $this;
-    }
-
-    /**
-     * Remove tutelle
-     *
-     * @param \PFE\DashBundle\Entity\Tutelle $tutelle
-     */
-    public function removeTutelle(\PFE\DashBundle\Entity\Tutelle $tutelle)
-    {
-        $this->tutelle->removeElement($tutelle);
-    }
-
-    /**
-     * Get tutelle
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTutelle()
-    {
-        return $this->tutelle;
     }
 
     /**

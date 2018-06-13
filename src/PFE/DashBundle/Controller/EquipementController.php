@@ -39,13 +39,13 @@ class EquipementController extends Controller
      * Creates a new Equipement entity.
      *
      */
-    public function createAction(Request $request)
+    public function newAction(Request $request)
     {
         $entity = new Equipement();
-        $form = $this->createCreateForm($entity);
+        $form = $this->createForm('PFE\DashBundle\Form\EquipementType', $entity);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isValid() && $form->isSubmitted()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -73,8 +73,8 @@ class EquipementController extends Controller
      */
     private function createCreateForm(Equipement $entity)
     {
-        $form = $this->createForm(new EquipementType(), $entity, array(
-            'action' => $this->generateUrl('pfe_saisi_equipement_create'),
+        $form = $this->createForm('PFE\DashBundle\Form\EquipementType', $entity, array(
+            'action' => $this->generateUrl('pfe_saisi_equipement_new'),
             'method' => 'POST',
         ));
 
@@ -87,7 +87,7 @@ class EquipementController extends Controller
      * Displays a form to create a new Equipement entity.
      *
      */
-    public function newAction()
+    public function new1Action()
     {
         $entity = new Equipement();
         $form   = $this->createCreateForm($entity);
@@ -125,24 +125,23 @@ class EquipementController extends Controller
      * Displays a form to edit an existing Equipement entity.
      *
      */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
+    public function editAction(Request $request,Equipement $equipement){
 
-        $entity = $em->getRepository('PFEDashBundle:Equipement')->find($id);
+        
+        $form=$this->createForm('PFE\DashBundle\Form\EquipementType',$equipement);
+        $form->handleRequest($request);
+        if($form->isValid()&& $form->isSubmitted()){
+           $em = $this->getDoctrine()->getManager()->flush(); 
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Equipement entity.');
+           $request->getSession()
+                   ->getFlashBag()
+                   ->add('edit','Equipement modifié');
+        return $this->redirectToRoute('pfe_saisi_equipement_edit',array('id'=>$equipement->getId()));
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('PFEDashBundle:Equipement:edit.html.twig', array(
-            'currt' => 'Equipement',
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+           
+            'edit_form'   => $form->createView(),
         ));
     }
 
@@ -222,6 +221,25 @@ class EquipementController extends Controller
                 ->getFlashBag()
                 ->add('delete', 'Equipement supprimé.');
         }
+
+        return $this->redirect($this->generateUrl('pfe_saisi_equipement'));
+    }
+
+       public function removeAction(Request $request,$id)
+    {
+            $e=new Equipement();
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('PFEDashBundle:Equipement')->find($id);
+
+           
+
+            $em->remove($e);
+            $em->flush();
+
+            $request->getSession()
+                ->getFlashBag()
+                ->add('delete', 'Equipement supprimé.');
+        
 
         return $this->redirect($this->generateUrl('pfe_saisi_equipement'));
     }
