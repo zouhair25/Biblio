@@ -10,9 +10,9 @@
     <table class="records_list bordered hoverable">
         <thead>
             <tr>
-                <th>Created</th>
-                <th>Typefondoc</th>
-                   <th>Bibliotheque</th>
+                <th width="10%">D. Création</th>
+                <th>Fondoc</th>
+                <th>Bibliotheque</th>
                 <th>Nombre</th>
                 <th>Actions</th>
             </tr>
@@ -27,7 +27,7 @@
                
                 <td><a href="{{path('pfe_saisi_fondoc_edit',{'id':entity.id})}}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a></td>
 
-            <td><a href="{{path('pfe_saisi_pret_remove',{'id':entity.id})}}" class="btn-floating btn-large waves-effet wave-light red" onclick="return confirm('Voulez vous vraiment supprimer')"><i class="material-icons">delete</i></a></td>
+            <td><a href="{{path('pfe_saisi_fondoc_remove',{'id':entity.id})}}" class="btn-floating btn-large waves-effet wave-light red" onclick="return confirm('Voulez vous vraiment supprimer')"><i class="material-icons">delete</i></a></td>
             </tr>
         {% endfor %}
         </tbody>

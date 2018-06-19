@@ -24,10 +24,11 @@
                 <td>{{ entity.nom }}</td>
                 <td><span class="badge new {% if entity.type == "Remarque" %} orange {% else %} red {% endif %}">{{ entity.type }}</span>  </td>
                 <td>{{ entity.description }}</td>
-                <td>
-                    <a href="{{ path('pfe_saisi_remarque_edit', { 'id': entity.id }) }}" class="btn-flat waves-effect waves-teal">
-                        <i class="mdi-editor-mode-edit"></i></a>
+             
+                <td> <a href="{{ path('pfe_saisi_remarque_edit', { 'id': entity.id }) }}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a>
+                      
                 </td>
+                <td> <a href="{{ path('pfe_saisi_remarque_remove', { 'id': entity.id }) }}" class="btn-floating btn-large waves-effet wave-light red" onclick="return confirmed('Voulez vous vraiment supprimer ?"><i class="material-icons">delete</i></a></td>
             </tr>
         {% endfor %}
         </tbody>

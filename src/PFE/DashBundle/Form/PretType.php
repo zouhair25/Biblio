@@ -33,7 +33,7 @@ class PretType extends AbstractType
             ))
             ->add('fondoc',EntityType::class, array(
                 'class' =>  'PFEDashBundle:Fondoc',
-                'choice_label' => 'nom'
+                'choice_label' => 'typefondoc.nom'
             ))
         ;
     }

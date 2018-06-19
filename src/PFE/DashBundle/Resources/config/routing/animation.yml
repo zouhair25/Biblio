@@ -28,3 +28,6 @@ pfe_saisi_animation_delete:
     path:     /{id}/delete
     defaults: { _controller: "PFEDashBundle:Animation:delete" }
     methods:  [POST, DELETE]
+pfe_saisi_animation_remove:
+    path:     /{id}/remove
+    defaults: { _controller: "PFEDashBundle:Animation:remove" }

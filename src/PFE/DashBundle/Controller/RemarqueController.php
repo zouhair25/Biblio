@@ -39,10 +39,10 @@ class RemarqueController extends Controller
      * Creates a new Remarque entity.
      *
      */
-    public function createAction(Request $request)
+    public function newAction(Request $request)
     {
         $entity = new Remarque();
-        $form = $this->createCreateForm($entity);
+        $form = $this->createForm('PFE\DashBundle\Form\RemarqueType',$entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -86,7 +86,7 @@ class RemarqueController extends Controller
      * Displays a form to create a new Remarque entity.
      *
      */
-    public function newAction()
+    public function new1Action()
     {
         $entity = new Remarque();
         $form   = $this->createCreateForm($entity);
@@ -124,24 +124,24 @@ class RemarqueController extends Controller
      * Displays a form to edit an existing Remarque entity.
      *
      */
-    public function editAction($id)
+    public function editAction(Request $request, Remarque $remarque)
     {
-        $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PFEDashBundle:Remarque')->find($id);
+        $form=$this->createForm('PFE\DashBundle\Form\RemarqueType',$remarque);
+        $form->handleRequest($request);
+        if($form->isValid()&& $form->isSubmitted()){
+            $em = $this->getDoctrine()->getManager()->flush();
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Remarque entity.');
+               $request->getSession()
+                ->getFlashBag()
+                ->add('edit', 'Informations actualisées !');
+        $this->redirectToRoute('pfe_saisi_remarque',array('id'=>$remarque->getId()));
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('PFEDashBundle:Remarque:edit.html.twig', array(
-            'currt' => 'Remarque',
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+          
+            'edit_form'   => $form->createView(),
+
         ));
     }
 
@@ -221,6 +221,23 @@ class RemarqueController extends Controller
                 ->getFlashBag()
                 ->add('delete', 'Remarque supprimée.');
         }
+
+        return $this->redirect($this->generateUrl('pfe_saisi_remarque'));
+    }
+
+
+   public function removeAction(Request $request, $id)
+    {
+            $r=new Remarque();
+            $em = $this->getDoctrine()->getManager();
+            $r = $em->getRepository('PFEDashBundle:Remarque')->find($id);
+            $em->remove($r);
+            $em->flush();
+
+            $request->getSession()
+                ->getFlashBag()
+                ->add('delete', 'Remarque supprimée.');
+        
 
         return $this->redirect($this->generateUrl('pfe_saisi_remarque'));
     }

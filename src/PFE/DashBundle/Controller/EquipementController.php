@@ -230,12 +230,8 @@ class EquipementController extends Controller
             $e=new Equipement();
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('PFEDashBundle:Equipement')->find($id);
-
-           
-
             $em->remove($e);
             $em->flush();
-
             $request->getSession()
                 ->getFlashBag()
                 ->add('delete', 'Equipement supprimé.');

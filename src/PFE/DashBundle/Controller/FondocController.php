@@ -236,14 +236,15 @@ class FondocController extends Controller
   public function removeAction(Request $request, $id)
     {
       
-        
+        $f=new Fondoc();
          $em = $this->getDoctrine()->getManager();
-         $entity = $em->getRepository('PFEDashBundle:Fondoc')->find($id);
-            if (!$entity) {
+         $f = $em->getRepository('PFEDashBundle:Fondoc')->find($id);
+           /* if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Fondoc entity.');
             }
-
-            $em->remove($entity);
+            dump($entity);
+            die();*/
+            $em->remove($f);
             $em->flush();
 
             $request->getSession()

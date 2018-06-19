@@ -45,7 +45,7 @@
        
         <div class="row">
             <div class="input-field col s1"><button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></button></div>
-            <div class="input-field col s3"><a href="{{ path('pfe_admin_bibliotheque') }}" class="btn blue-grey"><i class="mdi-action-view-headline right"></i>Retour à la liste</a></div>
+            <div class="input-field col s3"><a href="{{ path('pfe_admin_bibliotheque') }}" class="btn blue-grey"><i class="mdi-action-view-headline right"></i>Retour à la listee</a></div>
         </div>
        
 
@@ -57,6 +57,7 @@
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 150, // Creates a dropdown of 15 years to control year,
+    autoClose: true,
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',

@@ -73,12 +73,12 @@ class AnimationController extends Controller
      */
     private function createCreateForm(Animation $entity)
     {
-        $form = $this->createForm(new AnimationType(), $entity, array(
+        $form = $this->createForm('PFE\DashBundle\Form\AnimationType', $entity, array(
             'action' => $this->generateUrl('pfe_saisi_animation_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => '<i class="mdi-av-playlist-add left"></i> Enregistrer'));
+       // $form->add('submit', 'submit', array('label' => '<i class="mdi-av-playlist-add left"></i> Enregistrer'));
 
         return $form;
     }
@@ -125,24 +125,25 @@ class AnimationController extends Controller
      * Displays a form to edit an existing Animation entity.
      *
      */
-    public function editAction($id)
+     public function editAction(Request $request,Animation $animation)
     {
-        $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PFEDashBundle:Animation')->find($id);
+        $form=$this->createForm('PFE\DashBundle\Form\AnimationType', $animation);
+        $form->handleRequest($request);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Animation entity.');
+        if($form->isValid()&& $form->isSubmitted()){
+            $em = $this->getDoctrine()->getManager()->flush();
+
+             $request->getSession()
+                ->getFlashBag()
+                ->add('edit', 'Informations actualisées !');
+
+            return $this->redirect($this->generateUrl('pfe_saisi_animation_edit', array('id' =>$animation->getId())));
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('PFEDashBundle:Animation:edit.html.twig', array(
-            'currt' => 'Animation',
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+           // 'entity'      => $entity,
+            'edit_form'   => $form->createView()
         ));
     }
 

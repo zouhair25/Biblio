@@ -124,7 +124,7 @@ class PretController extends Controller
      * Displays a form to edit an existing Pret entity.
      *
      */
-    public function editAction(Request $request,Pret $pret )
+    public function edit1Action(Request $request,Pret $pret )
     {
         
         $form=$this->createForm('PFE\DashBundle\Form\PretType',$pret);
@@ -168,34 +168,23 @@ class PretController extends Controller
      * Edits an existing Pret entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function editAction(Request $request, Pret $pret)
     {
-        $em = $this->getDoctrine()->getManager();
+        
 
-        $entity = $em->getRepository('PFEDashBundle:Pret')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Pret entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+       $editForm=$this->createForm('PFE\DashBundle\Form\PretType',$pret);
         $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
+        if ($editForm->isValid()&& $editForm->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager()->flush();
             $request->getSession()
                 ->getFlashBag()
-                ->add('update', 'Informations actualisées !');
+                ->add('edit', 'Prêt modifié');
 
-            return $this->redirect($this->generateUrl('pfe_saisi_pret_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('pfe_saisi_pret_edit', array('id' => $pret->getId())));
         }
 
         return $this->render('PFEDashBundle:Pret:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form'   => $editForm->createView()
         ));
     }
     /**
@@ -246,25 +235,19 @@ class PretController extends Controller
 
       public function removeAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
+            $pret=new Pret();
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('PFEDashBundle:Pret')->find($id);
+            $pret = $em->getRepository('PFEDashBundle:Pret')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Pret entity.');
-            }
-
-            $em->remove($entity);
+          
+            $em->remove($pret);
             $em->flush();
 
             $request->getSession()
                 ->getFlashBag()
                 ->add('delete', 'Prêt supprimé.');
-        }
-
+  
         return $this->redirect($this->generateUrl('pfe_saisi_pret'));
     }
 }

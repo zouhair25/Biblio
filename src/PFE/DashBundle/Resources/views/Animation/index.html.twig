@@ -10,11 +10,11 @@
     <table class="records_list bordered hoverable">
         <thead>
             <tr>
-                <th>Created</th>
+                <th>D. création</th>
                 <th>Occamenheb</th>
-                <th>Typeanimation</th>
-                <th>Dateanimation</th>
-                <th>Publictotal</th>
+                <th>Type animation</th>
+                <th>Date animation</th>
+                <th>Nbre public</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -26,10 +26,11 @@
                 <td>{% if entity.occamenheb==1 %} Hebdomadaire {% elseif entity.occamenheb==2 %} Mensuel {% elseif entity.occamenheb==3 %} Occasionnel {% endif %}</td>
                 <td>{% if entity.dateanimation %}{{ entity.dateanimation|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ entity.publicTotal }}</td>
-                <td>
-                    <a href="{{ path('pfe_saisi_animation_edit', { 'id': entity.id }) }}" class="btn-flat waves-effect waves-teal">
-                        <i class="mdi-editor-mode-edit"></i></a>
+                
+                 <td> <a href="{{ path('pfe_saisi_animation_edit', { 'id': entity.id }) }}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a>
+                      
                 </td>
+                <td> <a href="{{ path('pfe_saisi_animation_remove', { 'id': entity.id }) }}" class="btn-floating btn-large waves-effet wave-light red" onclick="return confirmed('Voulez vous vraiment supprimer ?"><i class="material-icons">delete</i></a></td>
             </tr>
         {% endfor %}
         </tbody>

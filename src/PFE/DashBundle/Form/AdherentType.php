@@ -42,11 +42,11 @@ class AdherentType extends AbstractType
                     'Femme' => 0),
                     'choices_as_values' => true,
             ))
-            /*->add('dateInscription','date', array(
+            ->add('dateInscription',DateType::class, array(
                 'years' => range(date("Y"),2010),
                 'format' => 'dd-MM-y',
                 'widget' => 'single_text',
-                'attr' => ['class' => 'datepicker'],))*/
+                'attr' => ['class' => 'datepicker']))
             ->add('bibliotheque',EntityType::class,array(
                 'class' =>  'PFEDashBundle:Bibliotheque',
                 'choice_label' => 'nom',

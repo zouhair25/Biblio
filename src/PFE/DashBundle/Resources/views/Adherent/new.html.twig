@@ -6,7 +6,7 @@
 
 {% block body -%}
 <div class="row card-panel title top-teal col s11 cols2 crudcard">
-  <h5 class="card-title" style="text-align:left !important">Création adherent </h5>
+  <h5 class="card-title" style="text-align:left !important">Création adhérent </h5>
     {{ form_start(form) }}
 		<div class="row">
 	        <div class="input-field col s6">
@@ -20,17 +20,12 @@
 	      </div>
 	     <div class="row">
 	        <div class="input-field col s6">
-	        	{# form_row(form.dateNaissance) #}
-	        </div>
-	     </div>  
-	     <div class="row">
-	        <div class="input-field col s6">
 	        	{{ form_row(form.sexe) }}
 	        </div>
 	     </div>  
 	     <div class="row">
 	        <div class="input-field col s6">
-	        	{# form_row(form.dateInscription) #}
+	        	{{ form_row(form.dateInscription) }}
 	        </div>
 	     </div>
 	        {#form_widget(form.save,{'attr':{'class':'btn btn-primary'}})#}

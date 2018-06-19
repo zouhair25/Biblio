@@ -5,7 +5,9 @@ namespace PFE\DashBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class AnimationType extends AbstractType
 {
     /**
@@ -16,31 +18,31 @@ class AnimationType extends AbstractType
     {
         $builder
             //->add('created')
-            ->add('occamenheb', 'choice', array(
+            ->add('occamenheb',ChoiceType::class , array(
                 'choices'  => array(
                     'Hebdomadaire' => 1,
                     'Mensuel' => 2,
                     'Occasionnel' => 3),'choices_as_values' => true,
             ))
             ->add('publicvise')
-            ->add('dateExposition','date', array(
+            ->add('dateExposition',DateType::class, array(
                 'years' => range(date("Y"),2010),
                 'format' => 'dd-MM-y',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'datepicker'],))
             ->add('publicTotal')
-            ->add('dateanimation','date', array(
+            ->add('dateanimation',DateType::class, array(
                 'years' => range(date("Y"),2010),
                 'format' => 'dd-MM-y',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'datepicker'],))
-            ->add('typeanimation','entity', array(
-                'class' =>  'PFE\DashBundle\Entity\Typeanimation',
-                'property' => 'nom'
+            ->add('typeanimation',EntityType::class, array(
+                'class' =>  'PFEDashBundle:Typeanimation',
+                'choice_label' => 'nom'
             ))
-            ->add('bibliotheque','entity', array(
-                'class' =>  'PFE\DashBundle\Entity\Bibliotheque',
-                'property' => 'nom'
+            ->add('bibliotheque',EntityType::class, array(
+                'class' =>  'PFEDashBundle:Bibliotheque',
+                'choice_label' => 'nom'
             ))
         ;
     }
