@@ -11,6 +11,7 @@
         <thead>
             <tr>
                 <th></th>
+                <th>Nom</th>
                 <th>Url</th>
                 <th>Actions</th>
             </tr>
@@ -19,6 +20,7 @@
         {% for entity in entities %}
             <tr>
                 <td><img style="padding: 0 2px;" src="{{ asset('img/socials/'~entity.nom~'.png') }}"/></td>
+                <td>{{entity.nom}}</td>
                 <td><a href="http://{{ entity.url }}" target="_blank">{{ entity.url }}</a></td>
                 <td>
                     <a href="{{ path('pfe_admin_socialmedia_edit', { 'id': entity.id }) }}" class="btn-flat waves-effect waves-teal">

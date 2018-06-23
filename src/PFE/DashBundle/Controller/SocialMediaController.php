@@ -67,12 +67,12 @@ class SocialMediaController extends Controller
      */
     private function createCreateForm(SocialMedia $entity)
     {
-        $form = $this->createForm(new SocialMediaType(), $entity, array(
+        $form = $this->createForm('PFE\DashBundle\Form\SocialMediaType', $entity, array(
             'action' => $this->generateUrl('pfe_admin_socialmedia_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => '<i class="mdi-av-playlist-add left"></i> Enregistrer'));
+       // $form->add('submit', 'submit', array('label' => '<i class="mdi-av-playlist-add left"></i> Enregistrer'));
 
         return $form;
     }
@@ -149,12 +149,12 @@ class SocialMediaController extends Controller
     */
     private function createEditForm(SocialMedia $entity)
     {
-        $form = $this->createForm(new SocialMediaType(), $entity, array(
+        $form = $this->createForm('PFE\DashBundle\Form\SocialMediaType', $entity, array(
             'action' => $this->generateUrl('pfe_admin_socialmedia_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
+           // 'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => '<i class="mdi-action-cached left"></i> Mettre à jour'));
+       // $form->add('submit', 'submit', array('label' => '<i class="mdi-action-cached left"></i> Mettre à jour'));
 
         return $form;
     }
@@ -232,8 +232,8 @@ class SocialMediaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('pfe_admin_socialmedia_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit',  array('label' => '<i class="mdi-action-delete left"></i> Supprimer',
-                                                            'attr'=>array('class'=>'red')))
+           // ->add('submit', 'submit',  array('label' => '<i class="mdi-action-delete left"></i> Supprimer',
+            //                                                'attr'=>array('class'=>'red')))
             ->getForm()
         ;
     }

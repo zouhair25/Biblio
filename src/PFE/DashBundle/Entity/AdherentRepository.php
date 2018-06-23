@@ -49,13 +49,13 @@ class AdherentRepository extends EntityRepository
         if ($year === null) { $year = (int) date('Y'); }
         $date = new \DateTime("{$year}-{$month}-01");
 
-        $qb = $this->createQueryBuilder('e');
-        $qb->where('e.created BETWEEN :start AND :end')
-            ->andWhere('e.bibliotheque=:b')
-            ->setParameter('start', $date->format('Y-m-d'))
-            ->setParameter('end', $date->format('Y-m-t'))
-            ->setParameter(':b',$b)
-        ;
+        $qb=$this->createQueryBuilder('a')
+                 ->where('a.created BETWEEN :start AND :end')
+                 ->andWhere('a.bibliotheque=:b')
+                 ->setParameter(':b',$b)
+                 ->setParameter('start',$date->format('Y-m-d'))
+                 ->setParameter('end',$date->format('Y-m-t'));
+
 
         return $qb->getQuery()->getResult();
     }

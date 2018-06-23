@@ -21,12 +21,11 @@ class FondocRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function count($ism, Bibliotheque $b,&$year = null, &$month = null)
+     public function count($ism, Bibliotheque $b,&$year = null, &$month = null)
     {
         if ($month === null) { $month = (int) date('m'); }
         if ($year === null) { $year = (int) date('Y'); }
         $date = new \DateTime("{$year}-{$month}-01");
-
         $qb = $this->createQueryBuilder('f')
             ->leftJoin('f.typefondoc','tf')
             ->select('sum(f.nombre)')
@@ -40,7 +39,6 @@ class FondocRepository extends EntityRepository
             ->setParameter(':ism',$ism)
             ->orderBy('tf.nom','ASC')
         ;
-
         return $qb->getQuery()->getSingleScalarResult();
     }
 

@@ -22,6 +22,8 @@ class EspaceRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+
+
     public function findByBibDate(Bibliotheque $b, &$year = null, &$month = null)
     {
         if ($month === null) { $month = (int) date('m'); }
@@ -35,6 +37,7 @@ class EspaceRepository extends EntityRepository
             ->setParameter('end', $date->format('Y-m-t'))
             ->setParameter(':b',$b)
             ;
+ 
 
 
         return $qb->getQuery()->getResult();

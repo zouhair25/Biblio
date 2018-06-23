@@ -17,9 +17,11 @@
             {{ form_row(edit_form.url) }}
         </div>
         {{ form_widget(edit_form) }}
-        <a href="{{ path('pfe_admin_socialmedia') }}" class="btn blue-grey">
-            <i class="mdi-action-view-headline left"></i> Retour à la liste
-        </a>
+         <div class="row">
+            <div class="input-field col s1"><button type="submit" class="btn-floating btn-large waves-effect waves-light red">
+                <i class="material-icons">edit</i></button></div>
+            <div class="input-field col s3"><a href="{{ path('pfe_admin_socialmedia') }}" class="btn blue-grey"><i class="mdi-action-view-headline right"></i>Retour à la listee</a></div>
+        </div>
         {{ form_end(edit_form) }}
         <div class="record_actions">{{ form(delete_form) }}</div>
     </div>

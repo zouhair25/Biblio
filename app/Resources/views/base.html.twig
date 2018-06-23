@@ -7,28 +7,29 @@
 
     {% block stylesheets %}
         <!-- CSS  -->
-       
+         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="{{ asset('css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
         <style type="text/css">
             
-            @font-face {
+  /*          @font-face {
    font-family: 'Material Icons';
    font-style: normal;
    font-weight: 400;
-   src: url({{asset('font/MaterialIcons-Regular.eot')}}); /* For IE6-8 */
+   src: url({{asset('font/MaterialIcons-Regular.eot')}}); 
    src: local('Material Icons'),
         local('MaterialIcons-Regular'),
         url({{asset('font/MaterialIcons-Regular.woff2')}}) format('woff2'),
         url({{asset('font/MaterialIcons-Regular.woff')}}) format('woff'),
         url({{asset('font/MaterialIcons-Regular.ttf')}}) format('truetype');
+        url({{asset('font/roboto.ttf')}}) format('truetype');
 }
 
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px;  
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -36,7 +37,7 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
-
+*/
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
   /* Support for Safari and Chrome. */

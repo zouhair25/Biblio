@@ -27,7 +27,7 @@ class EspaceController extends Controller
         $y = $req->get('actionyear');
         $m = $req->get('actionmonth');
 
-        $entities = $em->getRepository('PFEDashBundle:Espace')->findAll();
+        $entities = $em->getRepository('PFEDashBundle:Espace')->findByDate($y,$m);
 
         return $this->render('PFEDashBundle:espace:index.html.twig', array(
             'currt' => 'Espace',
