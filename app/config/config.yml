@@ -113,3 +113,6 @@ fos_user:
     from_email:
         address: zouhair.fassih@gmail.com
         sender_name: test Upgrade
+    registration:
+        form:
+            type: PFE\UserBundle\Form\RegistrationType

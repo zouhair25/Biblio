@@ -22,6 +22,12 @@ class BibliothequeController extends Controller
 
         $bibliotheques = $em->getRepository('PFEDashBundle:Bibliotheque')->findAll();
 
+       //     $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        
+
+       // $bibliotheques = $em->getRepository('PFEDashBundle:Bibliotheque')->findBy(['responsable' => $user->getId()]);
+
         return $this->render('bibliotheque/index.html.twig', array(
             'bibliotheques' => $bibliotheques,
         ));

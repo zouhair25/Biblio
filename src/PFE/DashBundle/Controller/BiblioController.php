@@ -352,306 +352,43 @@ class BibController extends Controller
 
     public function cataloguesAction(Bibliotheque $b)
     {
-        return $this->render('PFEDashBundle:Bib:catalogues.html.twig', array(
-            "b" => $b,
-
-        ));    }
+          }
 
     public function pretsAction(Bibliotheque $b, Request $request)
     {
-        $req = $request->request;
-
-        $y = $req->get('actionyear');
-        $m = $req->get('actionmonth');
-
-        $repository = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('PFEDashBundle:Pret');
-
-        $prets = $repository->getPretByBibliotheque($b, $y, $m);
-        $countdocs = $repository->countdocs($b,'','', $y, $m);
-        $countdocs_interne = $repository->countdocs($b,'interne','', $y, $m);
-        $countdocs_externe = $repository->countdocs($b,'externe','', $y, $m);
-
-        $countprets = $repository->countdocs($b,'','pret', $y, $m);
-        $countprets_interne  = $repository->countdocs($b,'interne','pret', $y, $m);
-        $countprets_externe  = $repository->countdocs($b,'externe','pret', $y, $m);
-
-        $chart1 = new Highchart();
-        $chart1->chart->renderTo('piechart1');
-        $chart1->chart->type('pie'); // Column / Line (default)
-        $chart1->title->text('Count Docs');
-        $chart1->colors('#5c6bc0', '#42A5F5');
-        $chart1->plotOptions->pie(array(
-            'allowPointSelect'  => true,
-            'cursor'    => 'pointer',
-            'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
-        ));
-        $data = array(
-            array('docs pretés interne', (int)$countdocs_interne),
-            array('docs pretés externe', (int)$countdocs_externe));
-
-        $chart1->series(array(array(
-            'name' => 'type de pret',
-            'data' => $data)));
-
-        $chart2 = new Highchart();
-        $chart2->chart->renderTo('piechart2');
-        $chart2->chart->type('pie'); // Column / Line (default)
-        $chart2->title->text('Count Prets');
-        $chart2->colors('#5c6bc0', '#42A5F5');
-        $chart2->plotOptions->pie(array(
-            'allowPointSelect'  => true,
-            'cursor'    => 'pointer',
-            'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
-        ));
-        $data = array(
-            array('prets interne', (int)$countprets_interne),
-            array('prets externe', (int)$countprets_externe),
-        );
-        $chart2->series(array(array(
-            'name' => 'nombre de prets',
-            'data' => $data,
-        )));
-
-        return $this->render('PFEDashBundle:Bib:prets.html.twig', array(
-            "b" => $b,
-            "prets" => $prets,
-            "countdocs" => $countdocs,
-            "countprets" => $countprets,
-            "chart1" => $chart1,
-            "chart2" => $chart2,
-            "countdocs_interne" => $countdocs_interne,
-            "countdocs_externe" => $countdocs_externe,
-            "countprets_interne" => $countprets_interne,
-            "countprets_externe" => $countprets_externe,
-            'm' => $m, 'y' => $y,
-        ));    }
+         }
 
     public function adherentsAction(Bibliotheque $b, Request $request)
     {
-        $req = $request->request;
-
-        $y = $req->get('actionyear');
-        $m = $req->get('actionmonth');
-
-        $repository = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('PFEDashBundle:Adherent');
-
-        $adherents = $repository->findByBibDate($b,$y,$m);
-        $count = count($adherents);
-
-        $count_sexe_m = $repository->counbysexe(1,$b,$y,$m);
-        $count_sexe_f = $repository->counbysexe(0,$b,$y,$m);
-        $count_petits=0;
-        $count_moyens=0;
-        $count_grands=0;
-
-
-        foreach ($adherents as $adherent) {
-            if($adherent->getAge()<=12) { $count_petits+=1;}
-            if($adherent->getAge()>12 and $adherent->getAge()<=18) { $count_moyens+=1;}
-            if($adherent->getAge()>18) { $count_grands+=1;}
-        }
-
-        $chart1 = new Highchart();
-        $chart1->chart->renderTo('piechart1');
-        $chart1->chart->type('pie'); // Column / Line (default)
-        $chart1->title->text('Sexe');
-        $chart1->colors('#66bb6a', '#ec407a');
-        $chart1->plotOptions->pie(array(
-            'allowPointSelect'  => true,
-            'cursor'    => 'pointer',
-            'showInLegend'  => true
-        ));
-        $data = array(
-            array('Masculin : '.$count_sexe_m, (int)$count_sexe_m),
-            array('Feminin : '.$count_sexe_f, (int)$count_sexe_f));
-
-        $chart1->series(array(array(
-            'name' => 'Sexe',
-            'data' => $data)));
-
-        $chart2 = new Highchart();
-        $chart2->chart->renderTo('piechart2');
-        $chart2->chart->type('pie'); // Column / Line (default)
-        $chart2->title->text('Age');
-        $chart2->colors('#ff7043', '#26a69a','#5c6bc0');
-        $chart2->plotOptions->pie(array(
-            'allowPointSelect'  => true,
-            'cursor'    => 'pointer',
-            //'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
-        ));
-        $data = array(
-            array('petits : '.$count_petits, $count_petits),
-            array('moyens : '.$count_moyens, $count_moyens),
-            array('grands : '.$count_grands, $count_grands),
-        );
-        $chart2->series(array(array(
-            'name' => 'Age',
-            'data' => $data,
-        )));
-
-        return $this->render('PFEDashBundle:Bib:adherents.html.twig', array(
-            "b" => $b,
-            "count" => $count,
-            "adherents" => $adherents,
-            "chart1" => $chart1,
-            "chart2" => $chart2,
-            'm' => $m, 'y' => $y,
-        ));    }
+           }
 
     public function animationsAction(Bibliotheque $b, Request $request)
     {
-        $req = $request->request;
-
-        $y = $req->get('actionyear');
-        $m = $req->get('actionmonth');
-
-        $repository_type = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('PFEDashBundle:Typeanimation');
-        $types = $repository_type->findAll();
-
-        $repository = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('PFEDashBundle:Animation');
-
-        $animations = array();
-        $countAs = 0;
-        $countPVs = array();
-        $countPTs = array();
-        foreach ($types as $type) {
-            $as = $repository->findByBibDate($b, $type, $y, $m);
-            $countAs = $countAs + (int)count($as);
-            $animations[] = $as;
-            $countPVs[] = $repository->sumPublic($type,$b,'publicvise', $y, $m);
-            $countPTs[] = $repository->sumPublic($type,$b,'publicTotal', $y, $m);
-        }
-
-        $sumPVs = array_sum($countPVs);
-        $sumPTs = array_sum($countPTs);
-
-        return $this->render('PFEDashBundle:Bib:animations.html.twig', array(
-            "b" => $b,
-            "types" => $types,
-            "animations" => $animations,
-            "countPTs" => $countPTs,
-            "countPVs" => $countPVs,
-            "sumPVs" => $sumPVs,
-            "sumPTs" => $sumPTs,
-            "countAs" => $countAs,
-            'm' => $m, 'y' => $y,
-        ));    }
+           }
 
     public function remarquesAction(Bibliotheque $b, Request $request)
     {
-        $req = $request->request;
-
-        $y = $req->get('actionyear');
-        $m = $req->get('actionmonth');
-
-        $repository = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('PFEDashBundle:Remarque');
-
-        $remarques = $repository->findByBibDate($b,'remarque',$y,$m);
-        $besoins = $repository->findByBibDate($b,'besoin',$y,$m);
-        return $this->render('PFEDashBundle:Bib:remarques.html.twig', array(
-            "b" => $b,
-            "remarques" => $remarques,
-            "besoins" => $besoins,
-            'm' => $m, 'y' => $y,
-        ));    }
+      
+        }
 
     public function menuAction()
     {
-        $em = $this->getDoctrine()->getManager();
-            $repository=$em->getRepository('PFEDashBundle:Province');
-         
-        /*if($this->get('security.authorization_checker')->isGranted('ROLE_RESPONSABLE')){ 
-            $u=$em->getRepository('PFEUserBundle:User')
-                  ->findOneBy(array('username'=>$this->get('security.token_storage')->getToken()->getUser()->getUsername()));
-
-        }*/
-                  $provinces=$repository->findAll();
        
-
-        /*if($this->get('security.authorization_checker')->isGranted('ROLE_RESPONSABLE') || 
-           $this->get('security.authorization_checker')->isGranted('ROLE_DIRECTEUR') 
-          ){
-               $provinces=$repository->findWithProvince();
-           }*/
-        return $this->render('PFEDashBundle:Bib:menu.html.twig', array(
-            "provinces" => $provinces
-        ));
     }
 
     public function provinceAction(Province $p)
     {
 
-        $em=$this->getDoctrine()->getManager();
-        $repo=$em->getRepository('PFEDashBundle:Province');
-        $p=$repo->find($p);
-        return $this->render('PFEDashBundle:Bib:province.html.twig', array("p" => $p));
+       
     }
 
    public function majAction(Request $request)
     {
-        $repo  = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('PFEDashBundle:Bibliotheque');
-        if($this->get('security.authorization_checker')->isGranted('ROLE_RESPONSABLE')){
-            $u = $this->getDoctrine()
-                ->getManager()
-                ->getRepository('PFEUserBundle:User')
-                ->findOneBy(array('username'=>$this->get('security.token_storage')->getToken()->getUser()->getUsername()));
-            $bibs = $repo->findWithMajRespo($u);
-        }
-        if(
-            $this->get('security.authorization_checker')->isGranted('ROLE_ADMINISTRATEUR') ||
-            $this->get('security.authorization_checker')->isGranted('ROLE_DIRECTEUR')
-        ){
-            $bibs = $repo->findWithMaj();
-        }
-        if($request->isMethod('POST') /*&& $request->request->get('generatetable') */)
-        {
-            $y = $request->request->get('actionyear');
-            $bibid = $request->request->get('bibid');
-            if(is_null($bibid))
-            {
-                foreach ($bibs as $bib) {
-                    $this->majBibByYear($bib,$y);
-                }
-            }
-            else
-            {
-                $bib = $repo->find($bibid);
-                //$this->majBibByYear($bib,$y);
-            }
-        }
-        return $this->render('PFEDashBundle:Bib:maj.html.twig', array(
-            "bibs" => $bibs
-    ));
+      
     }
     public function majBibByYear(Bibliotheque $bib, $y)
     {
-        for($i=1;$i<=12;$i++)
-        {
-            $miseajour = new Miseajour();
-            $miseajour->setY($y);
-            $miseajour->setM($i);
-            $miseajour->setEtat(1);
-            $miseajour->setBibliotheque($bib);
-            //$em = $this->getDoctrine()->getEntityManager('distant');
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($miseajour);
-            $em->flush();
-        }
+       
     }
 
 }

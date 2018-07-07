@@ -66,4 +66,7 @@ pfe_dash_typeespace:
     resource: "@PFEDashBundle/Resources/config/routing/typeespace.yml"
     prefix:   /typeespace
 
-
+pfe_dash_home:
+    path:     /
+    defaults: { _controller: "PFEDashBundle:Default:home" }
+    methods:  GET

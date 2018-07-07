@@ -25,3 +25,14 @@ pfe_dash:
     resource: "@PFEDashBundle/Resources/config/routing.yml"
     prefix:   /
     
+pfe_user_index:
+    path:     /user
+    defaults: { _controller: "PFEUserBundle:User:index" }
+    methods:  GET
+pfe_user_edit:
+    path:     /user/{id}/edit
+    defaults: { _controller: "PFEUserBundle:User:edit" }
+    methods:  GET
+pfe_user_remove:
+    path:     /user/{id}/remove
+    defaults: { _controller: "PFEUserBundle:User:remove" }

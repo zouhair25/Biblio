@@ -82,4 +82,11 @@ class DefaultController extends Controller
 
         return $this->render('PFEDashBundle:Default:index.html.twig', compact('name','chart1','chart2','chart3'));
     }
+
+
+
+    public function homeAction(){
+
+    return	$this->render('PFEDashBundle:Default:home.html.twig');
+    }
 }

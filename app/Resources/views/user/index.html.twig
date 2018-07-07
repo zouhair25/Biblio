@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    CRUD - {{ parent() }}
+{% endblock %}
+{% block body %}
+<div class="row card-panel title top-grey col s11 cols2 crudcard"> 
+    <h5 class="card-title">Listes des utilisateurs </h5>
+
+    <table class="records-list borderd hoverable">
+        <thead>
+            <tr>
+               <!-- <th>Id</th>-->
+                <th>Nom & prénom</th>
+                <th>Bibliothéque</th>
+                <!--<th>Superficie</th>-->
+                <th>Email</th>
+                <th>Role</th>
+                <th style="text-align: right;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for u in user %}
+            <tr>
+                <td>{{u.nom}} {{u.prenom}}</td>
+                <td>{#u.bibrespo.id#}</td>
+                <td>{{u.email}}</td>
+                <td>{% for role in  u.roles%} {{role}} {%endfor%}</td>           
+                <td> <a href="{{ path('pfe_user_edit', { 'id': u.id }) }}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a>
+                      
+                </td>
+                <td> <a href="{{ path('pfe_user_remove', {'id': u.id}) }}" class="btn-floating btn-large waves-effet wave-light red" onclick="return confirmed('Voulez vous vraiment supprimer ?"><i class="material-icons">delete</i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+         <a href="{{path('fos_user_registration_register')}}" class="btn-large btn-floating wave-light waves-effet"><i class="material-icons">add</i></a>
+</div>
+  
+        
+{% endblock %}

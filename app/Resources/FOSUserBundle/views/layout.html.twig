@@ -6,15 +6,20 @@
         <meta charset="UTF-8" />
     </head>
     <body>
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
+   
+        <br>
+        <br><br><br>
+        <div></div>
+        <div >
+            {# if is_granted("IS_AUTHENTICATED_REMEMBERED") #}
+                {# 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') #} 
+               <!--  |
+               <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
+                </a>-->
             {# else #}
               <!--  <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>-->
-            {% endif %}
+            {# endif #}
         </div>
 
         {% if app.request.hasPreviousSession %}
@@ -31,6 +36,9 @@
             {% block fos_user_content %}
             {% endblock fos_user_content %}
         </div>
+ <br> <br> <br>
+  
+    <br> <br>
     </body>
 </html>
 {% endblock%}
