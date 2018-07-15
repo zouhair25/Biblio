@@ -5,7 +5,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass="BibliothequeRepository")
+ * @ORM\Entity(repositoryClass="PFE\DashBundle\Repository\BibliothequeRepository")
  * @UniqueEntity("email",message="Cet email est déjà utilisée.")
  * @UniqueEntity("nom",message="Cette bibliothèque est déjà saisie.")
  */

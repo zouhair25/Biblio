@@ -4,7 +4,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * @ORM\Entity(repositoryClass="EspaceRepository")
+ * @ORM\Entity(repositoryClass="PFE\DashBundle\Repository\EspaceRepository")
  */
 class Espace
 {

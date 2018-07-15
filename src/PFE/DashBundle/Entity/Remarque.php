@@ -3,7 +3,7 @@ namespace PFE\DashBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="RemarqueRepository")
+ * @ORM\Entity(repositoryClass="PFE\DashBundle\Repository\RemarqueRepository")
  */
 class Remarque
 {

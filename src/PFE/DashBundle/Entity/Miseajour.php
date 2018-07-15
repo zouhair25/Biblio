@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="datemaj", columns={"m", "y","bibliotheque_id"})})
- * @ORM\Entity(repositoryClass="PFE\DashBundle\Entity\MiseajourRepository")
+ * @ORM\Entity(repositoryClass="PFE\DashBundle\Repository\MiseajourRepository")
  */
 class Miseajour
 {

@@ -3,7 +3,7 @@ namespace PFE\DashBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="InternetRepository")
+ * @ORM\Entity(repositoryClass="PFE\DashBundle\Repository\InternetRepository")
  */
 class Internet
 {

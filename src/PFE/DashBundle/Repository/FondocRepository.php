@@ -1,12 +1,13 @@
 <?php
 
-namespace PFE\DashBundle\Entity;
+namespace PFE\DashBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
-class EquipementRepository extends EntityRepository
-{
+use PFE\DashBundle\Entity\Bibliotheque;
 
+class FondocRepository extends EntityRepository
+{
     public function findByDate(&$year = null, &$month = null)
     {
         if ($month === null) { $month = (int) date('m'); }
@@ -22,52 +23,42 @@ class EquipementRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function getEquipementsByBibliotheque($ray, Bibliotheque $b, &$year = null, &$month = null)
+     public function count($ism, Bibliotheque $b,&$year = null, &$month = null)
     {
         if ($month === null) { $month = (int) date('m'); }
         if ($year === null) { $year = (int) date('Y'); }
         $date = new \DateTime("{$year}-{$month}-01");
-
-        $qb = $this->createQueryBuilder('eq')
-            ->leftJoin('eq.espace','e')
-            ->leftJoin('eq.typeequipement','teq')
-            ->addSelect('teq')
-            ->leftJoin('e.bibliotheque','b')
+        $qb = $this->createQueryBuilder('f')
+            ->leftJoin('f.typefondoc','tf')
+            ->select('sum(f.nombre)')
+            ->leftJoin('f.bibliotheque','b')
             ->where('b=:b')
-            ->andWhere('teq.isRayonnage=:ray')
-            ->andWhere('eq.created BETWEEN :start AND :end')
+            ->andWhere('tf.isMultimedia=:ism')
+            ->andWhere('f.created BETWEEN :start AND :end')
             ->setParameter('start', $date->format('Y-m-d'))
             ->setParameter('end', $date->format('Y-m-t'))
             ->setParameter(':b',$b)
-            ->setParameter(':ray',$ray)
-            ->orderBy('teq.nom','ASC')
+            ->setParameter(':ism',$ism)
+            ->orderBy('tf.nom','ASC')
         ;
-
-        return $qb->getQuery()->getArrayResult();
-    }
-
-    public function countetat($ray, $dispo, Bibliotheque $b, &$year = null, &$month = null)
-    {
-        if ($month === null) { $month = (int) date('m'); }
-        if ($year === null) { $year = (int) date('Y'); }
-        $date = new \DateTime("{$year}-{$month}-01");
-
-        $qb = $this->createQueryBuilder('eq')
-            ->select('count(eq.id)')
-            ->leftJoin('eq.espace','e')
-            ->leftJoin('eq.typeequipement','teq')
-            ->leftJoin('e.bibliotheque','b')
-            ->where('b=:b')
-            ->andWhere('eq.isDisponible=:dispo')
-            ->andWhere('teq.isRayonnage=:ray')
-            ->andWhere('eq.created BETWEEN :start AND :end')
-            ->setParameter('start', $date->format('Y-m-d'))
-            ->setParameter('end', $date->format('Y-m-t'))
-            ->setParameter(':dispo',$dispo)
-            ->setParameter(':ray',$ray)
-            ->setParameter(':b',$b)
-        ;
-
         return $qb->getQuery()->getSingleScalarResult();
     }
+
+    public function findByBibDate(Bibliotheque $b ,&$year = null, &$month = null)
+    {
+        if ($month === null) { $month = (int) date('m'); }
+        if ($year === null) { $year = (int) date('Y'); }
+        $date = new \DateTime("{$year}-{$month}-01");
+
+        $qb = $this->createQueryBuilder('e');
+        $qb->where('e.created BETWEEN :start AND :end')
+            ->andWhere('e.bibliotheque=:b')
+            ->setParameter('start', $date->format('Y-m-d'))
+            ->setParameter('end', $date->format('Y-m-t'))
+            ->setParameter(':b',$b)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
 }

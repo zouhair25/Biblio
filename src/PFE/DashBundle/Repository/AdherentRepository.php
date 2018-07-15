@@ -1,10 +1,12 @@
 <?php
 
-namespace PFE\DashBundle\Entity;
+namespace PFE\DashBundle\Repository;
 
+use PFE\DashBundle\Entity\Adherent;
+use PFE\DashBundle\Entity\Bibliotheque;
 use Doctrine\ORM\EntityRepository;
 
-class AnimationRepository extends EntityRepository
+class AdherentRepository extends EntityRepository
 {
 
     public function findByDate(&$year = null, &$month = null)
@@ -22,44 +24,39 @@ class AnimationRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function sumPublic(Typeanimation $ta, Bibliotheque $b, $column, &$year = null, &$month = null)
+    public function counbysexe($sexe, Bibliotheque $b,&$year = null, &$month = null)
     {
         if ($month === null) { $month = (int) date('m'); }
         if ($year === null) { $year = (int) date('Y'); }
         $date = new \DateTime("{$year}-{$month}-01");
 
         $qb = $this->createQueryBuilder('a')
-            ->select('sum(a.'.$column.')')
-            ->leftJoin('a.typeanimation','ta')
+            ->select('count(a.id)')
             ->leftJoin('a.bibliotheque','b')
-
-            ->where('b=:b')
-            ->andWhere('ta=:ta')
+            ->where('a.sexe=:sexe')
+            ->andWhere('b=:b')
             ->andWhere('a.created BETWEEN :start AND :end')
             ->setParameter('start', $date->format('Y-m-d'))
             ->setParameter('end', $date->format('Y-m-t'))
-            ->setParameter(':ta',$ta)
             ->setParameter(':b',$b)
+            ->setParameter(':sexe',$sexe)
         ;
 
         return $qb->getQuery()->getSingleScalarResult();
     }
 
-    public function findByBibDate(Bibliotheque $b,$typeanimation=null, &$year = null, &$month = null)
+    public function findByBibDate(Bibliotheque $b ,&$year = null, &$month = null)
     {
         if ($month === null) { $month = (int) date('m'); }
         if ($year === null) { $year = (int) date('Y'); }
         $date = new \DateTime("{$year}-{$month}-01");
 
-        $qb = $this->createQueryBuilder('e');
-        $qb->where('e.created BETWEEN :start AND :end')
-            ->andWhere('e.bibliotheque=:b')
-            ->andWhere('e.typeanimation=:typeanimation')
-            ->setParameter('start', $date->format('Y-m-d'))
-            ->setParameter('end', $date->format('Y-m-t'))
-            ->setParameter(':b',$b)
-            ->setParameter(':typeanimation',$typeanimation)
-        ;
+        $qb=$this->createQueryBuilder('a')
+                 ->where('a.created BETWEEN :start AND :end')
+                 ->andWhere('a.bibliotheque=:b')
+                 ->setParameter(':b',$b)
+                 ->setParameter('start',$date->format('Y-m-d'))
+                 ->setParameter('end',$date->format('Y-m-t'));
 
 
         return $qb->getQuery()->getResult();

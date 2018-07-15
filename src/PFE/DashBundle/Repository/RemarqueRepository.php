@@ -1,7 +1,8 @@
 <?php
 
-namespace PFE\DashBundle\Entity;
+namespace PFE\DashBundle\Repository;
 
+use PFE\DashBundle\Entity\Bibliotheque;
 use Doctrine\ORM\EntityRepository;
 
 class RemarqueRepository extends EntityRepository

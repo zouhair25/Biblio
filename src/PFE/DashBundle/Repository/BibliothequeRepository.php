@@ -1,6 +1,6 @@
 <?php
 
-namespace PFE\DashBundle\Entity;
+namespace PFE\DashBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use PFE\UserBundle\Entity\User;
