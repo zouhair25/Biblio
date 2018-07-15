@@ -25,6 +25,7 @@
                 <td>{{u.nom}} {{u.prenom}}</td>
                 <td>{#u.bibrespo.id#}</td>
                 <td>{{u.email}}</td>
+                <td></td>
                 <td>{% for role in  u.roles%} {{role}} {%endfor%}</td>           
                 <td> <a href="{{ path('pfe_user_edit', { 'id': u.id }) }}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a>
                       

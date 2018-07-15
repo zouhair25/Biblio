@@ -120,9 +120,9 @@ class AdherentController extends Controller
      * Finds and displays a Adherent entity.
      *
      */
-    public function showAction($id)
+    public function showAction(Adherent $adherent)
     {
-        $em = $this->getDoctrine()->getManager();
+       /* $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PFEDashBundle:Adherent')->find($id);
 
@@ -130,11 +130,11 @@ class AdherentController extends Controller
             throw $this->createNotFoundException('Unable to find Adherent entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id);*/
 
         return $this->render('PFEDashBundle:Adherent:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'entity'      => $adherent,
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 

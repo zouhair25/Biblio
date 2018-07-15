@@ -2,8 +2,12 @@
 namespace PFE\DashBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * @ORM\Entity(repositoryClass="BibliothequeRepository")
+ * @UniqueEntity("email",message="Cet email est déjà utilisée.")
+ * @UniqueEntity("nom",message="Cette bibliothèque est déjà saisie.")
  */
 class Bibliotheque
 {
@@ -15,18 +19,21 @@ class Bibliotheque
     private $id;
 
     /**
-     * @Assert\Length(min=10,minMessage="Le titre doit faire au moins {{ limit }} caractères.")
      * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Length(min=7,minMessage="Le nom doit faire au moins '{{ limit }}' caractères.")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
      */
     private $dateCreation;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Assert\Range(min=1)
      */
     private $superficie;
 
@@ -37,16 +44,23 @@ class Bibliotheque
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\Length(min=10,max=10)
      */
     private $tel;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\Length(min=10,max=10)
+     *
      */
     private $fax;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\Email(
+     *     message = "L'email '{{ value }}' n'est pas un email valide.",
+     *     checkMX = true
+     * )
      */
     private $email;
 
@@ -97,6 +111,7 @@ class Bibliotheque
 
     /**
      * @ORM\OneToOne(targetEntity="PFE\UserBundle\Entity\User", inversedBy="bibrespo")
+     * @Assert\NotBlank()
      */
     private $responsable;
 
@@ -135,6 +150,7 @@ class Bibliotheque
         $this->socialMedia = new \Doctrine\Common\Collections\ArrayCollection();
         $this->remarque = new \Doctrine\Common\Collections\ArrayCollection();
         $this->isFormation = false;
+        $this->dateCreation=new \DateTime();
     }
 
     /**

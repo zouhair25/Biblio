@@ -10,16 +10,16 @@
         <thead>
             <tr>
                <!-- <th>Id</th>-->
-                <th>Nom</th>
-                <th>Date création</th>
+                <th style="width: 25%;">Nom</th>
+                <th style="width: 10%;">D. création</th>
                 <!--<th>Superficie</th>-->
                 <th>Adresse</th>
-                <th>Tel</th>
-                <th>Fax</th>
+                <th style="width:11%;">Tel</th>
+                <!--<th>Fax</th>-->
                 <th>Email</th>
                <!-- <th>Date installation</th>-->
-                <th>Formation</th>
-                <th style="text-align: right;">Actions</th>
+                <th style="width: 5%;">F</th>
+                <th style="text-align: center;" colspan="2">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -31,14 +31,15 @@
               <!--  <td>{{ bibliotheque.superficie }}</td>-->
                 <td>{{ bibliotheque.adresse }}</td>
                 <td>{{ bibliotheque.tel }}</td>
-                <td>{{ bibliotheque.fax }}</td>
+                 <!-- <td>{{ bibliotheque.fax }}</td>-->
                 <td>{{ bibliotheque.email }}</td>
                <!-- <td>{% if bibliotheque.dateInstallationInternet %}{{ bibliotheque.dateInstallationInternet|date('d-m-Y') }}{% endif %}</td>-->
                 <td>{% if bibliotheque.isFormation %}Oui{% else %}Non{% endif %}</td>
-                <td> <a href="{{ path('pfe_admin_bibliotheque_edit', { 'id': bibliotheque.id }) }}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a>
+                <td> <a href="{{ path('pfe_admin_bibliotheque_edit', { 'id': bibliotheque.id }) }}" 
+                    class="btn-floating btn-small waves-effet wave-light red"><i class="material-icons">edit</i></a>
                       
                 </td>
-                <td> <a href="{{ path('pfe_admin_bibliotheque_remove', { 'id': bibliotheque.id }) }}" class="btn-floating btn-large waves-effet wave-light red" onclick="return confirmed('Voulez vous vraiment supprimer ?"><i class="material-icons">delete</i></a></td>
+                <td> <a href="{{ path('pfe_admin_bibliotheque_remove', { 'id': bibliotheque.id }) }}" class="btn-floating btn-small waves-effet wave-light red" onclick="return confirmed('Voulez vous vraiment supprimer ?"><i class="material-icons">delete</i></a></td>
             </tr>
         {% endfor %}
         </tbody>

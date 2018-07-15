@@ -11,7 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
@@ -24,12 +26,12 @@ class BibliothequeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nom',TextType::class)
-                ->add('dateCreation', DateType::class
+               /* ->add('dateCreation', DateType::class
               ,array(
                 //)
                 'widget' => 'single_text',
                 'attr' => ['class' => 'datepicker']
-            ))
+            ))*/
                 ->add('superficie',TextType::class)
                 ->add('adresse',TextType::class)
                 ->add('tel',TextType::class)
@@ -39,8 +41,15 @@ class BibliothequeType extends AbstractType
                                                                 'widget'=>'single_text',
                                                                 'attr'=>['class'=>'datepicker']
                    ))
-                ->add('isFormation',CheckboxType::class)
-                ->add('responsable')
+                ->add('isFormation',ChoiceType::class, array(
+                      'choices' => array(
+                          'Oui' => '1',
+                          'Non' => '0'
+                      ),
+                      'expanded' => true,
+                      
+                    ))
+                 ->add('responsable')
                 ->add('catalogue',EntityType::class,array(
                   'class'   =>'PFEDashBundle:Catalogue',
                   'choice_label'    =>'nom',

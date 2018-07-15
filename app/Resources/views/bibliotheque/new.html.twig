@@ -6,47 +6,43 @@
 
     {{ form_start(form) }}
         <div class="row">
-            <div class="input-field col s6">{{form_row(form.nom)}}</div>
-        </div>
-        
-        <div class="row">
-            <div class="input-field col s6">{{form_row(form.dateCreation)}}</div>
-        </div>
-        <div class="row">
+            <div class="input-field col s6">{{form_row(form.nom,{'label':'Nom bibliothèque'})}}</div>
+       
             <div class="input-field col s6">{{form_row(form.superficie)}}</div>
         </div>
         
          <div class="row">
-            <div class="input-field col s6">{{form_row(form.adresse)}}</div>
-        </div>
-         <div class="row">
-            <div class="input-field col s6">{{form_row(form.tel)}}</div>
-        </div>
-         <div class="row">
+            <div class="input-field col s6">{{form_row(form.tel,{'label':'Telephone'})}}</div>
+
             <div class="input-field col s6">{{form_row(form.fax)}}</div>
         </div>
+
          <div class="row">
             <div class="input-field col s6">{{form_row(form.email)}}</div>
-        </div>
-         <div class="row">
+
             <div class="input-field col s6">{{form_row(form.dateInstallationInternet)}}</div>
         </div>
+
          <div class="row">
-            <div class="input-field col s6">{{form_row(form.isFormation)}}</div>
-        </div>
-         <div class="row">
+            <div class="input-field col s6">
+            
+            {{form_row(form.isFormation,  {'label':'Formation','attr': {'class': 'form-control','style': 'padding-left: 20%;'}})}}</div>
+
             <div class="input-field col s6">{{form_row(form.responsable)}}</div>
         </div>
+
          <div class="row">
             <div class="input-field col s6">{{form_row(form.province)}}</div>
-        </div>
-         <div class="row">
+
             <div class="input-field col s6">{{form_row(form.catalogue)}}</div>
         </div>
          <div class="row">
-            <div class="input-field col s2">  <button type="submit" value="Create" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></button></div>
-            <div class="input-field col s3"> 
-                <a href="{{ path('pfe_admin_bibliotheque') }}" class="btn blue-grey"><i class="mdi-action-view-headline left"></i> Retour à la liste</a></div>
+            <div class="input-field col s12">{{form_row(form.adresse)}}</div>
+        </div>
+         <div class="row">
+            <div class="input-field col s2">  <button type="submit" value="Create" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></button></div>
+            <div class="input-field col s5"> 
+                <a href="{{ path('pfe_admin_bibliotheque') }}" class="btn waves-effect waves-light btn-small"><i class="material-icons left">undo</i>Retour</a></div>
         </div>
         
     {{ form_end(form) }}

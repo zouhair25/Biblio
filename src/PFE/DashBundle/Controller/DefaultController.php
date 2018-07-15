@@ -4,7 +4,8 @@ namespace PFE\DashBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ob\HighchartsBundle\Highcharts\Highchart;
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     public function indexAction($name)
@@ -85,8 +86,10 @@ class DefaultController extends Controller
 
 
 
-    public function homeAction(){
+    public function homeAction(Request $request){
 
+    dump($request);
+   // die();
     return	$this->render('PFEDashBundle:Default:home.html.twig');
     }
 }

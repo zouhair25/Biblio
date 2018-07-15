@@ -1,6 +1,8 @@
 <?php
 namespace PFE\DashBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AdherentRepository")
@@ -23,6 +25,7 @@ class Adherent
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\Length(min=7,max=255,minMessage="Le titre doit faire au moins 7 caracteres")
      */
     private $nom;
 

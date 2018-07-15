@@ -6,37 +6,29 @@
 
     {{ form_start(edit_form) }}
         <div class="row">
-            <div class="input-field col s6">{{form_row(edit_form.nom)}}</div>
-        </div>
-         <div class="row">
-            <div class="input-field col s6">{{form_row(edit_form.dateCreation)}}</div>
-        </div>
-        <div class="row">
+            <div class="input-field col s6">{{form_row(edit_form.nom,{'label':'Nom bibliothèque'})}}</div>
+       
             <div class="input-field col s6">{{form_row(edit_form.superficie)}}</div>
         </div>
         
          <div class="row">
             <div class="input-field col s6">{{form_row(edit_form.adresse)}}</div>
-        </div>
-         <div class="row">
-            <div class="input-field col s6">{{form_row(edit_form.tel)}}</div>
+       
+            <div class="input-field col s6">{{form_row(edit_form.tel,{'label':'Telephone'})}}</div>
         </div>
          <div class="row">
             <div class="input-field col s6">{{form_row(edit_form.fax)}}</div>
-        </div>
-         <div class="row">
+        
             <div class="input-field col s6">{{form_row(edit_form.email)}}</div>
         </div>
          <div class="row">
-            <div class="input-field col s6">{{form_row(edit_form.dateInstallationInternet)}}</div>
-        </div>
-         <div class="row">
-            <div class="input-field col s6">{{form_row(edit_form.isFormation)}}</div>
+            <div class="input-field col s6">{{form_row(edit_form.isFormation,{'label':'Formation','attr': {'style':'padding-left:20%'}})}}</div>
+            
+            <div class="input-field col s6">{{form_row(edit_form.dateInstallationInternet)}}</div>        
         </div>
          <div class="row">
             <div class="input-field col s6">{{form_row(edit_form.responsable)}}</div>
-        </div>
-         <div class="row">
+       
             <div class="input-field col s6">{{form_row(edit_form.province)}}</div>
         </div>
          <div class="row">
@@ -45,7 +37,7 @@
        
         <div class="row">
             <div class="input-field col s1"><button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></button></div>
-            <div class="input-field col s3"><a href="{{ path('pfe_admin_bibliotheque') }}" class="btn blue-grey"><i class="mdi-action-view-headline right"></i>Retour à la listee</a></div>
+            <div class="input-field col s3"><a href="{{ path('pfe_admin_bibliotheque') }}" class="btn blue-grey"><i class="mdi-action-view-headline right"></i>Retour</a></div>
         </div>
        
 
