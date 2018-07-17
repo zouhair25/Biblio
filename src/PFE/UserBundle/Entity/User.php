@@ -6,9 +6,11 @@ namespace PFE\UserBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="user")
+ * @UniqueEntity("email")
  */
 class User extends BaseUser
 {

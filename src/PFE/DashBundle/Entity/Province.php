@@ -1,9 +1,12 @@
 <?php
 namespace PFE\DashBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
+ * @UniqueEntity("nom",message="Cette province est déjà saisie.")
  */
 class Province
 {
@@ -16,6 +19,7 @@ class Province
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\Length(min=3, minMessage="le nom doit contenir au moins '{{ limit }}'  caractères.")
      */
     private $nom;
 

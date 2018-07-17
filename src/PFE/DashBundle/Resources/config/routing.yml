@@ -55,7 +55,7 @@ pfe_dash_catalogue:
 
 pfe_dash_province:
     resource: "@PFEDashBundle/Resources/config/routing/province.yml"
-    prefix:   /province
+    prefix:   /admin/province
 
 index_projet:
     resource: "@PFEDashBundle/Resources/config/routing/dash.yml"
@@ -64,7 +64,7 @@ index_projet:
 
 pfe_dash_typeespace:
     resource: "@PFEDashBundle/Resources/config/routing/typeespace.yml"
-    prefix:   /typeespace
+    prefix:   /admin/typeespace
 
 pfe_dash_home:
     path:     /

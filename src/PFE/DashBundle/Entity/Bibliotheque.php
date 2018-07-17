@@ -111,7 +111,7 @@ class Bibliotheque
 
     /**
      * @ORM\OneToOne(targetEntity="PFE\UserBundle\Entity\User", inversedBy="bibrespo")
-     * @Assert\NotBlank()
+     * @ORM\JoinColumn(nullable=false)
      */
     private $responsable;
 
