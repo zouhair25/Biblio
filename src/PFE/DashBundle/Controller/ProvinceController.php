@@ -33,10 +33,14 @@ class ProvinceController extends Controller
      */
     public function newAction(Request $request)
     {
+        //pour afficher les province
+        $em = $this->getDoctrine()->getManager();
+        $provinces = $em->getRepository('PFEDashBundle:Province')->findAll();
+
+        // pour creation d'un nouveau province
         $province = new Province();
         $form = $this->createForm('PFE\DashBundle\Form\ProvinceType', $province);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($province);
@@ -44,11 +48,12 @@ class ProvinceController extends Controller
            $request->getSession()
                   ->getFlashbag()
                   ->add('add','Province ajouté');
-            return $this->redirectToRoute('province_index', array('id' => $province->getId()));
+            return $this->redirectToRoute('province_new', array('id' => $province->getId()));
         }
 
         return $this->render('province/new.html.twig', array(
             'province' => $province,
+            'provinces' => $provinces,
             'form' => $form->createView(),
         ));
     }
@@ -108,7 +113,7 @@ class ProvinceController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('province_index');
+        return $this->redirectToRoute('province_new');
     }
 
     /**
@@ -141,6 +146,6 @@ class ProvinceController extends Controller
                 ->add('delete','Province supprimé.');
 
 
-        return $this->redirectToRoute('province_index');
+        return $this->redirectToRoute('province_new');
     }
 }

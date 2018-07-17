@@ -3,10 +3,12 @@
 {% block body %}
 <div class="row card-panel title top-grey col s11 cols2 crudcard"> 
     <div class="row">
-        <div class="col s12">
+        <div class="col s6">
             
       
     <h5 class="card-title" style="text-align:left !important">Liste des provinces</h5>
+
+
 
     <table class="">
         <thead>
@@ -21,9 +23,9 @@
                 <td>{{ province.nom }}</td>
                 
                        
-                <td>  <a href="{{ path('province_edit', { 'id': province.id }) }}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">edit</i></a></td>
+                <td>  <a href="{{ path('province_edit', { 'id': province.id }) }}" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">edit</i></a></td>
 
-                <td><a href="{{ path('province_remove', { 'id': province.id }) }}" class="waves-light waves-effect btn-large btn-floating red" onclick="return confirm('Voulez vous vraiement supprimer ?')"><i class="material-icons">delete</i></a></td>    
+                <td><a href="{{ path('province_remove', { 'id': province.id }) }}" class="waves-light waves-effect btn-small btn-floating red" onclick="return confirm('Voulez vous vraiement supprimer ?')"><i class="material-icons">delete</i></a></td>    
                 
             </tr>
         {% endfor %}
@@ -31,8 +33,13 @@
     </table>
 
    
-            <a href="{{ path('province_new') }}" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+            <a href="{{ path('province_new') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
        
+      </div>
+
+      <div class="col s6">
+          
+
       </div>
     </div>
 </div>

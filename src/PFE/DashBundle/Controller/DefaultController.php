@@ -88,7 +88,7 @@ class DefaultController extends Controller
 
     public function homeAction(Request $request){
 
-    dump($request);
+    //dump($request);
    // die();
     return	$this->render('PFEDashBundle:Default:home.html.twig');
     }
