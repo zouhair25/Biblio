@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class RegistrationType extends AbstractType
 {
     /**
@@ -25,6 +25,11 @@ class RegistrationType extends AbstractType
                                 ))*/
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
+            ->add('bibliotheque',EntityType::class,array(
+              'class'=>'PFE\DashBundle\Entity\Bibliotheque',
+              'choice_label'=>'nom',
+              'multiple'=>false
+            ))
             ->add('roles',ChoiceType::class,[
                     'multiple'=>true,
                     'expanded'=>true,

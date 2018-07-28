@@ -11,11 +11,11 @@
         <thead>
             <tr>
                 <th>D. création</th>
-                <th></
                 <th>Type</th>
                 <th>Disponible</th>
                 <th>Etat</th>
-                <th>Nbre place assises</th>
+                <th>Nbre Assises</th>
+                <th style="width: 25%;">bibliothèque</th>
                 <th colspan="2">Actions</th>
             </tr>
         </thead>
@@ -35,15 +35,15 @@
                 <span class="badge blue-grey new">Médiocre</span>
                 {% endif %} </td>
                 <td>{{ entity.nombrePlaceAssises }}</td>
-           
-            <td><a href="{{path('pfe_saisi_espace_edit',{'id':entity.id})}}" class="btn-floating btn-large waves-effet wave-light red"><i class="material-icons">edit</i></a></td>
-                <td><a href="{{path('pfe_saisi_espace_remove',{'id':entity.id})}}" class="btn-floating btn-large waves-effet wave-light red" onclick="return confirm('Voulez vous vraiment supprimer')"><i class="material-icons">delete</i></a></td>
+                <td>{{ entity.bibliotheque.nom}}</td>
+            <td><a href="{{path('pfe_saisi_espace_edit',{'id':entity.id})}}" class="btn-floating btn-small waves-effet wave-light red"><i class="material-icons">edit</i></a></td>
+                <td><a href="{{path('pfe_saisi_espace_remove',{'id':entity.id})}}" class="btn-floating btn-small waves-effet wave-light red" onclick="return confirm('Voulez vous vraiment supprimer')"><i class="material-icons">delete</i></a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
     <br>
-    <a href="{{ path('pfe_saisi_espace_new') }}" class="btn-floating btn-large waves-effet wave-light">
+    <a href="{{ path('pfe_saisi_espace_new') }}" class="btn-floating btn-small waves-effet wave-light">
         <i class="mdi-content-add left">add</i></a>
 </div>
     {% endblock %}

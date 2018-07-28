@@ -14,7 +14,7 @@
         <thead>
             <tr>
                <th>Nom</th>
-                <th colspan="2">Actions</th>
+                <th colspan="1" style="text-align: center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
                 <td>{{ province.nom }}</td>
                 
                        
-                <td>  <a href="{{ path('province_edit', { 'id': province.id }) }}" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">edit</i></a></td>
+                <td style="width: 10%;">  <a href="{{ path('province_edit', { 'id': province.id }) }}" data-id={{"province.id"}} class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">edit</i></a></td>
 
                 <td><a href="{{ path('province_remove', { 'id': province.id }) }}" class="waves-light waves-effect btn-small btn-floating red" onclick="return confirm('Voulez vous vraiement supprimer ?')"><i class="material-icons">delete</i></a></td>    
                 
@@ -33,13 +33,22 @@
     </table>
 
    
-            <a href="{{ path('province_new') }}" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></a>
        
       </div>
-
-      <div class="col s6">
+  
+      <div class="col s5">
           
+         <h5 class="card-title" style="text-align:left !important">Création de province</h5>
 
+      {{ form_start(form) }}
+        <div class="row" style="text-align: center;padding-left: 15%;">
+            <div class="input-field col s12">{{ form_widget(form) }}</div>
+        </div>    
+        <div class="row" style="padding-left: 17%;">
+            <div class="input-field col s2">  <button type="submit" value="Create" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">add</i></button>
+            </div>           
+        </div>
+    {{ form_end(form) }}
       </div>
     </div>
 </div>

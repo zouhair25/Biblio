@@ -22,7 +22,7 @@ class UserController extends Controller{
     public function editAction(Request $request, User $user)
     {
      
-        $editForm=$this->createForm('PFE\UserBundle\Form\RegistrationFormType',$user);
+        $editForm=$this->createForm('PFE\UserBundle\Form\RegistrationType',$user);
         $editForm->handleRequest($request);
        if($editForm->isSubmitted() && $editForm->isValid()){
          
@@ -30,7 +30,7 @@ class UserController extends Controller{
          
              $request->getSession()
                 ->getFlashBag()
-                ->add('edit', 'Adhérent modifié.');
+                ->add('edit', 'Utilisateur modifié.');
          return $this->redirectToRoute('pfe_saisi_user_edit',array('id'=>$user->getId()));
         }
           

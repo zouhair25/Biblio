@@ -2,6 +2,7 @@
 namespace PFE\DashBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="PFE\DashBundle\Repository\EspaceRepository")
@@ -17,16 +18,19 @@ class Espace
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Assert\NotBlank()
      */
     private $isDisponible;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Assert\Choice(choices = {"Bon", "Médiocre"}, message = "Choose a valid gender.")
      */
     private $etat;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank()
      */
     private $nombrePlaceAssises;
 

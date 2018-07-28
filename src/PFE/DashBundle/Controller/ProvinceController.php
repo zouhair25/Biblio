@@ -16,7 +16,7 @@ class ProvinceController extends Controller
      * Lists all province entities.
      *
      */
-    public function indexAction()
+    public function indexxAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -31,7 +31,7 @@ class ProvinceController extends Controller
      * Creates a new province entity.
      *
      */
-    public function newAction(Request $request)
+    public function indexAction(Request $request)
     {
         //pour afficher les province
         $em = $this->getDoctrine()->getManager();
@@ -51,7 +51,7 @@ class ProvinceController extends Controller
             return $this->redirectToRoute('province_new', array('id' => $province->getId()));
         }
 
-        return $this->render('province/new.html.twig', array(
+        return $this->render('province/index.html.twig', array(
             'province' => $province,
             'provinces' => $provinces,
             'form' => $form->createView(),

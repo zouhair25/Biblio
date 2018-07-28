@@ -2,9 +2,39 @@
 
 <div class="row card-panel title top-grey col s11 cols2 crudcard">
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}"  class="btn-large  wave-light waves-effet"/>
-    </div>
+   
+     <div class="row">
+     	<div class="input-field col s6">
+     		{{ form_row(form.nom) }}
+     	</div>
+     	<div class="input-field col s6">
+     		{{ form_row(form.prenom) }}
+     	</div>
+     </div>
+	 <div class="row">
+     	<div class="input-field col s6"> 
+	        {{ form_row(form.email) }}
+	    </div>
+	    <div class="input-field col s6"> 
+	    	{{ form_row(form.username) }}
+	    </div>
+	 </div>
+	 <div class="row">
+	 	<div class="input-field col s6">
+	 		{{ form_row(form.plainPassword) }}
+	 	</div>
+	 	<div class="input-field col s6">
+	 	    {{ form_row(form.bibliotheque) }}
+	 	</div>
+	 </div>
+     <div class="row">
+     	<div class="input-field col s6">
+     		{{ form_row(form.roles, {'label':'Role','attr': {'class': 'form-control','style': 'padding-left: 15%;'}}) }}
+     	</div>
+     	<div class="input-field col s6">
+     		<input type="submit" value="{{ 'registration.submit'|trans }}"  class="btn-large  wave-light waves-effet"/>
+     	</div>
+     </div>
+	    
 {{ form_end(form) }}
 </div>

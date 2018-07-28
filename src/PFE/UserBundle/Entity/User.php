@@ -5,6 +5,7 @@ namespace PFE\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
@@ -23,11 +24,13 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank()
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank()
      */
     private $prenom;
 

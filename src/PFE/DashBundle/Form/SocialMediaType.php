@@ -18,6 +18,7 @@ class SocialMediaType extends AbstractType
         $builder
             ->add('nom',ChoiceType::class, array(
                 'choices'  => array(
+                    ''   => '',
                     'fb' => 'Facebook',
                     'tw' => 'Twitter',
                     'ig' => 'Instagram',

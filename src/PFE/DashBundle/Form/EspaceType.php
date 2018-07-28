@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class EspaceType extends AbstractType
 {
@@ -16,18 +18,19 @@ class EspaceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('isDisponible',CheckboxType::class
-               /* , array('choices'  => array(
-                    'Disponible' => 1,
-                    'Non disponible' => 0),
-                'choices_as_values' => true,)*/
+            ->add('isDisponible',ChoiceType::class
+                , array('choices'  => array(
+                            'Disponible' => 1,
+                            'Non disponible' => 0),
+                        'expanded'=>true
+               )
             )
-            ->add('etat',CheckboxType::class
+            ->add('etat',ChoiceType::class
                 , array(
-                /*'choices'  => array(
+                'choices'  => array(
                     'Bon' => 1,
                     'Médiocre' => 0),
-                'choices_as_values' => true,*/
+                'expanded' => true,
                 )
             )
             ->add('nombrePlaceAssises')
