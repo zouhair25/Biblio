@@ -27,4 +27,4 @@ pfe_admin_socialmedia_update:
 pfe_admin_socialmedia_delete:
     path:     /{id}/delete
     defaults: { _controller: "PFEDashBundle:SocialMedia:delete" }
-    methods:  [POST, DELETE]
+    methods:  [POST, DELETE,GET]

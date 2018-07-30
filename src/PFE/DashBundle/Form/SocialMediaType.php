@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 class SocialMediaType extends AbstractType
 {
     /**
@@ -25,6 +26,7 @@ class SocialMediaType extends AbstractType
                     'gp' => 'Google+',
                     'sw' => 'Site Web',
             )))
+            ->add('image',FileType::class)
             ->add('url')
             ->add('bibliotheque',EntityType::class, array(
                 'class' =>  'PFEDashBundle:Bibliotheque',

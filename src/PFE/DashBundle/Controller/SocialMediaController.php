@@ -42,6 +42,13 @@ class SocialMediaController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $url=$entity->getImage();
+            $filename=md5(uniqid()).'.'.$url->guessExtension();
+            $url->move(
+              $this->getParameter('social_img'),$filename
+            );
+            $entity->setImage($filename);
             $em->persist($entity);
             $em->flush();
 

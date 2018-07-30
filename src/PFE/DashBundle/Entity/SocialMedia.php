@@ -1,7 +1,7 @@
 <?php
 namespace PFE\DashBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  */
@@ -15,12 +15,21 @@ class SocialMedia
     private $id;
 
     /**
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(nullable=false)
      */
     private $nom;
 
     /**
-     * @ORM\Column(nullable=true)
+    * @ORM\Column(type="string",length=50,nullable=false)
+    * @Assert\File(mimeTypes={"image/png"})
+    * @Assert\NotBlank(message="Séléctionnez une image !")
+    */
+    private $image;
+
+    /**
+     * @ORM\Column(nullable=false)
+     * 
+     * 
      */
     private $url;
 
@@ -107,5 +116,53 @@ class SocialMedia
     public function getBibliotheque()
     {
         return $this->bibliotheque;
+    }
+
+    /**
+     * Set lien
+     *
+     * @param string $lien
+     *
+     * @return SocialMedia
+     */
+    public function setLien($lien)
+    {
+        $this->lien = $lien;
+
+        return $this;
+    }
+
+    /**
+     * Get lien
+     *
+     * @return string
+     */
+    public function getLien()
+    {
+        return $this->lien;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return SocialMedia
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

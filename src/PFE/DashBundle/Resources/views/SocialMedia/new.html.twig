@@ -14,15 +14,24 @@
                 {{ form_row(form.nom) }}
             </div>
             <div class="input-field col s6">
-                {{ form_row(form.url) }}
+                {{ form_row(form.image,{'label':'Joignez une image',
+                'attr':{'style': 'padding-left: 34%;padding-top: 3%;padding-bottom: 0%;;'}}) }}
             </div>
-            {{ form_widget(form) }}
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                {{ form_row(form.url, {'label':'le lien de social'})}}
+            </div>
+            <div class="input-field col s6">
+                {{ form_row(form.bibliotheque) }}
+            </div>
+        </div>
             <div class="row">
             <div class="input-field col s2">  <button type="submit" value="Create" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></button></div>
             <div class="input-field col s3"> 
                 <a href="{{ path('pfe_admin_socialmedia') }}" class="btn blue-grey"><i class="mdi-action-view-headline left"></i> Retour à la liste</a></div>
             </div>
             {{form_end(form)}}
-        </div>
+        
     </div>
 {% endblock %}
