@@ -1,5 +1,5 @@
 # EFPHT-project
-A Symfony2 project (currently in dev)
+A Symfony3 project (currently in dev)
 
 before running project
 Update composer dependencies : 
